@@ -1,0 +1,82 @@
+.login {
+    height: 100vh;
+    background-image: url('../Images/oppenheimer2.jpeg');
+    background-size: 150%;
+    background-position: 5% center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.register {
+    height: 100vh;
+    background-image: url('../Images/oppenheimer2.jpeg');
+    background-size: 150%;
+    background-position: 5% center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.login-form, .register-form {
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    padding: 20px;
+    width: 300px;
+    height: auto; /* Adjusted to accommodate content */
+    border-radius: 10px;
+    color: white;
+    border: 1px solid #f7f7f7;
+    position: absolute;
+    left: 300px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.input-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fffdfd;
+}
+
+input {
+    width: calc(100% - 30px);
+    padding: 10px;
+    padding-left: 30px;
+    border: none;
+    border-radius: 25px;
+    background-color: transparent;
+    outline: none;
+    border: 1px solid #f7f7f7;
+    color: white;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    background-color: white;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
