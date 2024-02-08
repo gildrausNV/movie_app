@@ -7,6 +7,7 @@ import { Button, Input } from '@mui/material';
 import { GrLike } from "react-icons/gr";
 import { GrDislike } from "react-icons/gr";
 import { FaHeart } from "react-icons/fa";
+import CommentSectionModal from '../Components/CommentSectionModal';
 
 const MovieDetailsPage = () => {
     const [movie, setMovie] = useState({
@@ -16,6 +17,12 @@ const MovieDetailsPage = () => {
         image: '',
         liked: false
     });
+
+    const [showCommentModal, setShowCommentModal] = useState(false);
+
+    const handleToggleCommentModal = () => {
+        setShowCommentModal(!showCommentModal);
+    };
 
     return (
         <div className="movie-details-page">
@@ -31,8 +38,8 @@ const MovieDetailsPage = () => {
                         {actors.map((actor) => <Actor actor={actor} />)}
                     </div>
                     <div className="input-container">
-                        <div className="comment-button">
-                            <button>Leave a comment</button>
+                    <div className="comment-button">
+                            <button onClick={handleToggleCommentModal}>Show comment section</button>
                         </div>
                         <div className="like-button">
                             <FaHeart className='like-icon'/>
@@ -40,6 +47,7 @@ const MovieDetailsPage = () => {
                     </div>
                 </div>
             </div>
+            <CommentSectionModal open={showCommentModal} onClose={handleToggleCommentModal} />
         </div>
     );
 }
