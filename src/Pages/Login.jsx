@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaUser, FaLock } from 'react-icons/fa';
-import './Login.css';
+import './Style/Login.css';
 import img from '../Images/oppenheimer2.jpeg';
 
 const Login = () => {

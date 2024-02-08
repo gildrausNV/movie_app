@@ -1,0 +1,43 @@
+.movies-page {
+    height: 100vh;
+    background-image: url('../../Images/oppenheimer2.jpeg');
+    background-size: 100%;
+    background-position: 5% center;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 100%;
+    position: relative;
+    /* filter: brightness(0.4) blur(1px); */
+    /* -webkit-filter: brightness(0.4) blur(px);   */
+}
+
+.movies{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.movie-paper {
+    width: 300px;
+    height: 410px;
+    position: relative;
+    background-size: cover;
+    background-position: center; 
+    overflow: hidden; 
+    margin: 10px;
+    border: 1px solid transparent;
+}
+
+.movie-paper:hover {
+    border: 1px solid rgb(193, 89, 14);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.movie{
+    border-radius: 5%;
+}
+

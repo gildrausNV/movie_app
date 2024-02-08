@@ -1,0 +1,69 @@
+/* MovieDetailsPage.css */
+
+.movie-details-page {
+    height: 100vh;
+    background-image: url('../../Images/oppenheimer2.jpeg');
+    background-size: 100%;
+    background-position: 5% center;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 100%;
+    position: relative;
+}
+
+.movie-details-container {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.movie-details-image img {
+    max-width: 400px;
+    height: auto;
+    margin-right: 20px;
+
+}
+
+.movie-details-content {
+    /* flex: 1; */
+    height: 564px;
+    width: 900px;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+}
+
+.movie-details-content h2 {
+    margin-bottom: 10px;
+}
+
+.movie-details-content p {
+    margin: 5px 0;
+}
+
+.actors {
+    margin-top: 80px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+}
+
+.input-container{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.like-icon{
+    width: 30px;
+    height: 30px;
+}
+
+.like-icon:hover{
+    cursor: pointer;
+    color: rgba(255, 0, 0, 0.929);
+    transition: 0.5s;
+}
