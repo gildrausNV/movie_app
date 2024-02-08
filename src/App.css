@@ -12,6 +12,21 @@
   position: relative;
 }
 
+.icons-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-icon {
+  color: white;
+  width: 24px;
+  height: 24px;
+  margin-bottom: 10px;
+}
+
 .logout-icon {
   color: white;
   width: 30px;

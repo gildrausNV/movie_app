@@ -1,0 +1,40 @@
+.user-page {
+    color: white;
+    width: 900px;
+    height: 450px;
+    display: flex;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.user-info {
+    width: 150px;
+}
+
+.user-details {
+    height: 300px;
+}
+
+.user-picture {
+    /* height: ; */
+}
+
+.user-picture {
+    width: 100px;
+    height: 100px;
+}
+
+.user-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.watchlist{
+    /* margin: 10px; */
+    margin-left: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 700px;
+}

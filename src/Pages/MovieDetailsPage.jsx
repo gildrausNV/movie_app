@@ -8,6 +8,8 @@ import { GrLike } from "react-icons/gr";
 import { GrDislike } from "react-icons/gr";
 import { FaHeart } from "react-icons/fa";
 import CommentSectionModal from '../Components/CommentSectionModal';
+import { CiCircleRemove } from "react-icons/ci";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
 
 const MovieDetailsPage = () => {
     const [movie, setMovie] = useState({
@@ -15,7 +17,8 @@ const MovieDetailsPage = () => {
         releaseDate: "2010-07-16",
         description: "A thief who enters the dreams of others to steal their secrets from their subconscious.",
         image: '',
-        liked: false
+        liked: false,
+        inWatchlist: false
     });
 
     const [showCommentModal, setShowCommentModal] = useState(false);
@@ -42,11 +45,14 @@ const MovieDetailsPage = () => {
                             <button onClick={handleToggleCommentModal}>Show comment section</button>
                         </div>
                         <div className="like-button">
+                            {/* <CiCircleRemove className='like-icon'/> */}
+                            <MdOutlineRemoveRedEye className='like-icon'/>
                             <FaHeart className='like-icon'/>
                         </div>
                     </div>
                 </div>
             </div>
+            
             <CommentSectionModal open={showCommentModal} onClose={handleToggleCommentModal} />
         </div>
     );

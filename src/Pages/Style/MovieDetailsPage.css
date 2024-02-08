@@ -59,3 +59,9 @@
     color: rgba(255, 0, 0, 0.929);
     transition: 0.5s;
 }
+
+.like-button{
+    display: flex;
+    justify-content: space-between;
+    width: 80px;
+}

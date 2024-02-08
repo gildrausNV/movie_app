@@ -1,0 +1,15 @@
+.watchlist-poster {
+    max-width: 100px;
+}
+
+.watchlist-movie {
+    margin: 10px;
+    height: 150px;
+    border: 1px solid transparent;
+    transition: transform 0.3s ease; /* Add transition for smooth effect */
+}
+
+.watchlist-movie:hover {
+    cursor: pointer;
+    transform: scale(1.05); /* Scale up slightly on hover */
+}

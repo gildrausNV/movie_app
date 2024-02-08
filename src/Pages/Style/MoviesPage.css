@@ -19,12 +19,14 @@
     overflow: hidden; 
     margin: 10px;
     border: 1px solid transparent;
+    transition: transform 0.3s ease;
 }
 
 .movie-paper:hover {
     border: 1px solid rgb(193, 89, 14);
     cursor: pointer;
     transition: 0.5s;
+    transform: scale(1.05);
 }
 
 .movie{
