@@ -1,5 +1,22 @@
-.page{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* App.css */
+
+.page {
+  height: 100vh;
+  background-image: url('./Images/oppenheimer2.jpeg');
+  background-size: 100%;
+  background-position: 5% center;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  width: 100%;
+  position: relative;
+}
+
+.logout-icon {
+  color: white;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
 }

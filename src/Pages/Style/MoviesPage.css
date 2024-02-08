@@ -1,15 +1,5 @@
 .movies-page {
-    height: 100vh;
-    background-image: url('../../Images/oppenheimer2.jpeg');
-    background-size: 100%;
-    background-position: 5% center;
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    width: 100%;
-    position: relative;
-    /* filter: brightness(0.4) blur(1px); */
-    /* -webkit-filter: brightness(0.4) blur(px);   */
+    
 }
 
 .movies{

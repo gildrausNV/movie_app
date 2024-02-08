@@ -35,7 +35,6 @@ const MovieDetailsPage = () => {
                             <button>Leave a comment</button>
                         </div>
                         <div className="like-button">
-                            {/* {movie.liked ? <GrDislike className='like-icon'/> : <GrLike className='like-icon'/>} */}
                             <FaHeart className='like-icon'/>
                         </div>
                     </div>

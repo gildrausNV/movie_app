@@ -1,25 +1,8 @@
 .login {
-    height: 100vh;
-    background-image: url('../../Images/oppenheimer2.jpeg');
-    background-size: 150%;
-    background-position: 5% center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    position: relative;
 }
 
 .register {
-    height: 100vh;
-    background-image: url('../../Images/oppenheimer2.jpeg');
-    background-size: 150%;
-    background-position: 5% center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    position: relative;
+    
 }
 
 .login-form, .register-form {
