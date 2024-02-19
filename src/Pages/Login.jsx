@@ -51,10 +51,6 @@ const Login = ({ setToken, setId, setIsAdmin, setUserContext }) => {
     // setToken(null);
   }, []);
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
-
   return (
     <div className="login">
       <div className="login-form">
