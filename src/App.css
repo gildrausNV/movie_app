@@ -27,6 +27,12 @@
   margin-bottom: 10px;
 }
 
+.menu-icon:hover{
+  cursor: pointer;
+  transform: scale(1.25); 
+  transition: 0.3s;
+}
+
 .logout-icon {
   color: white;
   width: 30px;
@@ -34,4 +40,10 @@
   position: absolute;
   bottom: 10px;
   left: 10px;
+}
+
+.logout-icon:hover{
+  cursor: pointer;
+  transform: scale(1.25); 
+  transition: 0.3s;
 }
