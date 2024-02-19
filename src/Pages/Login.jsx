@@ -6,7 +6,6 @@ import img from '../Images/oppenheimer2.jpeg';
 const Login = () => {
     return (
         <div className="login">
-            {/* <img src={img} alt="" width="2029" height="1020" className='background'/> */}
             <div className="login-form">
                 <div className="header">
                     <h1>Login</h1>
