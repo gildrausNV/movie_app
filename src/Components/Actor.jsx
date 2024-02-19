@@ -8,7 +8,8 @@ const Actor = ({ actor }) => {
                 <FaUser className="user-icon" />
             </div>
             <div className="actor-info">
-                <h4>{actor.firstName} {actor.lastName}</h4>
+                {/* <h4>{actor.firstname} {actor.lastName}</h4> */}
+                <h4>{actor.role}</h4>
             </div>
         </div>
      );

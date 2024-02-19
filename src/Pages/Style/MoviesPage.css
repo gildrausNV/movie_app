@@ -2,21 +2,20 @@
     /* width: 900px; */
 }
 
-.movies{
+.movies {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-
 .movie-paper {
     width: 250px;
     height: 360px;
     position: relative;
     background-size: cover;
-    background-position: center; 
-    overflow: hidden; 
+    background-position: center;
+    overflow: hidden;
     margin: 10px;
     border: 1px solid transparent;
     transition: transform 0.3s ease;
@@ -29,9 +28,30 @@
     transform: scale(1.05);
 }
 
-.movie{
-    border-radius: 5%;
-    /* width: 200px; */
-
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
+.movie-paper:hover .overlay {
+    opacity: 1;
+}
+
+.title {
+    margin-bottom: 5px;
+}
+
+.release-date {
+    font-size: 0.8rem;
+}

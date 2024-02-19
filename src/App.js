@@ -42,7 +42,7 @@ function App() {
               <Route path='/login' element={<Login setToken={setToken} setId={setId} setIsAdmin={setIsAdmin} setUserContext={setUser} />} />
               <Route path="/register" element={<Register />} />
               <Route path="/movies" element={<MoviesPage />} />
-              <Route path="/movieDetails" element={<MovieDetailsPage />} />
+              <Route path="/movieDetails/:movieId" element={<MovieDetailsPage />} />
               <Route path="/user" element={<UserPage />} />
             </Routes>
 

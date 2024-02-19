@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import { Modal, TextField, Button, Typography, Box } from '@mui/material';
 import './CommentSectionModal.css';
+import useFetchData from '../customHooks/useFetchData';
 
-const CommentSectionModal = ({ open, onClose }) => {
+const CommentSectionModal = ({ open, onClose, movieId }) => {
+
+    const {data: comments, error, loading, refetchData} = useFetchData("http://localhost:8080/comments/movie/" + movieId);
+
     const [comment, setComment] = useState('');
-    const [comments, setComments] = useState([{user: 'Nikola Vujcic', content: 'Nice!'},{user: 'Dimitrije Vujcic', content: 'Awesome!'},{user: 'Milos Vujcic', content: 'Meh!'}]);
 
     const handleCommentChange = (event) => {
         setComment(event.target.value);
     };
 
     const handleSubmit = () => {
-        setComments([...comments, comment]);
+        // setComments([...comments, comment]);
         setComment('');
+        refetchData();
     };
 
     return (
@@ -50,9 +54,9 @@ const CommentSectionModal = ({ open, onClose }) => {
                     Comments:
                 </Typography>
                 
-                    {comments.map((comment, index) => (
-                        <div className='comment'>
-                            {comment.user} {comment.content}
+                    {comments && comments.map((comment, index) => (
+                        <div className='comment' key={comment.id}>
+                            {comment.user.firstNAme} {comment.user.lastName} : {comment.content}
                         </div>
                     ))}
                     

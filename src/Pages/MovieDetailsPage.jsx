@@ -10,16 +10,22 @@ import { FaHeart } from "react-icons/fa";
 import CommentSectionModal from '../Components/CommentSectionModal';
 import { CiCircleRemove } from "react-icons/ci";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { useParams } from 'react-router-dom';
+import useFetchData from '../customHooks/useFetchData';
 
 const MovieDetailsPage = () => {
-    const [movie, setMovie] = useState({
-        name: "Inception",
-        releaseDate: "2010-07-16",
-        description: "A thief who enters the dreams of others to steal their secrets from their subconscious.",
-        image: '',
-        liked: false,
-        inWatchlist: false
-    });
+    const { movieId } = useParams();
+
+    const { data: movie, error, loading, refetchData } = useFetchData('http://localhost:8080/movies/' + movieId);
+
+    // const [movie, setMovie] = useState({
+    //     name: "Inception",
+    //     releaseDate: "2010-07-16",
+    //     description: "A thief who enters the dreams of others to steal their secrets from their subconscious.",
+    //     image: '',
+    //     liked: false,
+    //     inWatchlist: false
+    // });
 
     const [showCommentModal, setShowCommentModal] = useState(false);
 
@@ -29,16 +35,17 @@ const MovieDetailsPage = () => {
 
     return (
         <div className="movie-details-page">
+            {movie && 
             <div className="movie-details-container">
                 <div className="movie-details-image">
-                    <img src={img} alt={movie.name} />
+                    <img src={img} alt={movie.title} />
                 </div>
                 <div className="movie-details-content">
-                    <h2>{movie.name}</h2>
+                    <h2>{movie.title}</h2>
                     <p><strong>Release Date:</strong> {movie.releaseDate}</p>
                     <p><strong>Description:</strong> {movie.description}</p>
                     <div className="actors">
-                        {actors.map((actor) => <Actor actor={actor} />)}
+                        {movie.roles.map((actor) => <Actor actor={actor} key={actor.id}/>)}
                     </div>
                     <div className="input-container">
                     <div className="comment-button">
@@ -51,9 +58,9 @@ const MovieDetailsPage = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>}
             
-            <CommentSectionModal open={showCommentModal} onClose={handleToggleCommentModal} />
+            <CommentSectionModal open={showCommentModal} onClose={handleToggleCommentModal} movieId={movieId}/>
         </div>
     );
 }
