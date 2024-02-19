@@ -3,9 +3,12 @@ import icon from './Icons/person.png';
 import { FaUserAlt } from "react-icons/fa";
 import useMovieData from './useMovieData';
 import Movie from '../Components/Movie';
+import useFetchData from '../customHooks/useFetchData';
 
 const UserPage = () => {
-    const { movies } = useMovieData();
+    // const { movies } = useMovieData();
+
+    const { data: movies, error, loading, refetchData } = useFetchData("http://localhost:8080/users/watchlist");
 
 
     return (
@@ -23,10 +26,7 @@ const UserPage = () => {
                 </div>
             </div>
             <div className="watchlist">
-                {movies.map((movie) => (
-                    <Movie movie={movie}/>
-                ))}
-                {movies.map((movie) => (
+                {movies && movies.map((movie) => (
                     <Movie movie={movie}/>
                 ))}
             </div>

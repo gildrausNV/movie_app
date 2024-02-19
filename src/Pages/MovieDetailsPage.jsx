@@ -12,11 +12,24 @@ import { CiCircleRemove } from "react-icons/ci";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { useParams } from 'react-router-dom';
 import useFetchData from '../customHooks/useFetchData';
+import usePostData from '../customHooks/usePostData';
+import useDeleteData from '../customHooks/useDeleteData';
 
 const MovieDetailsPage = () => {
     const { movieId } = useParams();
 
     const { data: movie, error, loading, refetchData } = useFetchData('http://localhost:8080/movies/' + movieId);
+    const {data: isInMyWatchlist} = useFetchData('http://localhost:8080/movies/isInMyWatchlist/' + movieId);
+    const { postData } = usePostData();
+    const { deleteData } = useDeleteData();
+
+    const handleAddToWatchlist = () => {
+        postData('http://localhost:8080/users/watchlist/' + movieId);
+    }
+
+    const handleRemoveFromWatchlist = () => {
+        deleteData('http://localhost:8080/users/watchlist/' + movieId);
+    }
 
     // const [movie, setMovie] = useState({
     //     name: "Inception",
@@ -53,7 +66,7 @@ const MovieDetailsPage = () => {
                         </div>
                         <div className="like-button">
                             {/* <CiCircleRemove className='like-icon'/> */}
-                            <MdOutlineRemoveRedEye className='like-icon'/>
+                            {!isInMyWatchlist ? <MdOutlineRemoveRedEye className='like-icon' onClick={handleAddToWatchlist}/> : <div onClick={handleRemoveFromWatchlist}>REMOVE</div>}
                             <FaHeart className='like-icon'/>
                         </div>
                     </div>
