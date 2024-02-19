@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Style/MoviesPage.css';
 import useMovieData from './useMovieData';
 import Carousel from 'react-material-ui-carousel';
@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 const MoviesPage = () => {
     const { movies } = useMovieData();
     const navigate = useNavigate(); 
-
+    console.log(localStorage.getItem("role"));
     return (
         <div className="movies-page">
             <div className="movies">
