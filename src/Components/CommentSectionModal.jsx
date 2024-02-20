@@ -4,13 +4,21 @@ import { IoIosSend } from "react-icons/io";
 import "./CommentSectionModal.css";
 import useFetchData from "../customHooks/useFetchData";
 import usePostData from "../customHooks/usePostData";
+import { TiDelete } from "react-icons/ti";
+import useDeleteData from "../customHooks/useDeleteData";
+import { useAuth } from "../AuthContext";
 
 const CommentSectionModal = ({ open, onClose, movieId }) => {
+  const { user } = useAuth();
   const [comments, setComments] = useState([]);
   const { data: fetchedComments, getError, getLoading, refetchData } = useFetchData(
-    "http://localhost:8080/comments/movie/" + movieId
+    "http://localhost:8080/comments/movie/" + movieId,
+    user.token
   );
-  const { postData, response } = usePostData();
+  
+  const { postData, response } = usePostData(user.token);
+
+  const { deleteData } = useDeleteData(user.token);
 
   const [comment, setComment] = useState("");
   const inputRef = useRef(null);
@@ -35,6 +43,11 @@ const CommentSectionModal = ({ open, onClose, movieId }) => {
     }
   };
 
+  const handleDelete = async (commentId) => {
+    await deleteData("http://localhost:8080/comments/" + commentId);
+    refetchData();
+  }
+
   return (
     <Modal
       open={open}
@@ -50,8 +63,13 @@ const CommentSectionModal = ({ open, onClose, movieId }) => {
         {comments &&
           comments.map((comment, index) => (
             <div className="comment" key={comment.id}>
-              {comment.user.firstName} {comment.user.lastName} :{" "}
-              {comment.content}
+              <div className="comment-content">
+                {comment.user.firstName} {comment.user.lastName} :{" "}
+                {comment.content}
+              </div>
+              <div className="delete-icon-container">
+                {comment.user.id === user.id && <TiDelete className="delete-icon" onClick={() => handleDelete(comment.id)}/>}
+              </div>
             </div>
           ))}
 

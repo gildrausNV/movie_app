@@ -2,11 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { FaUser, FaLock } from "react-icons/fa";
 import "./Style/Login.css";
 import usePostData from "../customHooks/usePostData";
-import authContext from "../AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthContext";
 
 const Login = ({ setToken, setId, setIsAdmin, setUserContext }) => {
-  const { user } = useContext(authContext);
+  const { setUser } = useAuth();
   const navigate = useNavigate();
   const { response, postData, loading, error } = usePostData();
   const [loginData, setLoginData] = useState({
@@ -22,10 +22,9 @@ const Login = ({ setToken, setId, setIsAdmin, setUserContext }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    postData("http://localhost:8080/auth/login", loginData);
-    
+    const userData = await postData("http://localhost:8080/auth/login", loginData);
   };
 
   useEffect(() => {
@@ -43,6 +42,7 @@ const Login = ({ setToken, setId, setIsAdmin, setUserContext }) => {
       //     token,
       //     isAdmin: role === "ADMIN",
       //   });
+      setUser(response);
     }
   }, [response]);
 

@@ -9,7 +9,7 @@ import { MdLocalMovies } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import UserPage from "./Pages/UserPage";
 import { useContext, useEffect, useState } from "react";
-import authContext from "./AuthContext.jsx";
+import { AuthProvider } from './AuthContext';
 
 function App() {
   const [user, setUser] = useState({
@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div className="App">
-      <authContext.Provider value={user}>
+      <AuthProvider>
         <Router>
           <div className="page">
             <div className="icons-container">
@@ -57,7 +57,7 @@ function App() {
             </Link>
           </div>
         </Router>
-      </authContext.Provider>
+      </AuthProvider>
     </div>
   );
 }

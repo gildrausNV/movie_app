@@ -1,14 +1,14 @@
 import './Style/UserPage.css';
 import icon from './Icons/person.png';
 import { FaUserAlt } from "react-icons/fa";
-import useMovieData from './useMovieData';
 import Movie from '../Components/Movie';
 import useFetchData from '../customHooks/useFetchData';
 import { useEffect, useState } from 'react';
+import { useAuth } from '../AuthContext';
 
 const UserPage = () => {
-
-    const { data, error, loading, refetchData } = useFetchData("http://localhost:8080/users/watchlist");
+    const { user } = useAuth();
+    const { data, error, loading, refetchData } = useFetchData("http://localhost:8080/users/watchlist", user.token);
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
@@ -18,22 +18,23 @@ const UserPage = () => {
     return (
         <div className="user-page">
             <div className="user-info">
-                {/* <div className="user-image"> */}
-
-                {/* </div> */}
                 <div className="user-details">
-                    {/* <img src={icon} alt="" className='user-picture' /> */}
                     <div className="user-image-container">
                         <FaUserAlt className='user-picture' />
                     </div>
-                    <h2>Nikola Vujcic</h2>
+                    <div className="user-name">
+                        <h2>{data?.user.firstName} {data?.user.lastName}</h2>
+                    </div>
                 </div>
             </div>
-            <div className="watchlist">
-                {movies?.map((movie) => (
-                    <Movie movie={movie}/>
-                    // <>test</>
-                ))}
+            <div className="watchlist-container">
+                <h1>My watchlist</h1>
+                <div className="watchlist">
+
+                    {data?.movies?.map((movie) => (
+                        <Movie movie={movie} />
+                    ))}
+                </div>
             </div>
         </div>
     );

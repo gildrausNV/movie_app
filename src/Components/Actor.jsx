@@ -3,11 +3,14 @@ import './Actor.css';
 import { FaUser } from 'react-icons/fa';
 import ActorModal from './ActorModal';
 import useFetchData from '../customHooks/useFetchData';
+import { useAuth } from '../AuthContext';
 
 const Actor = ({ role }) => {
+    const { user } = useAuth();
+
     const url = "http://localhost:8080/actors/" + role?.actorId;
 
-    const { data: actor, error, loading, refetchData } = useFetchData(url);
+    const { data: actor, error, loading, refetchData } = useFetchData(url, user.token);
 
     const [showActorModal, setShowActorModal] = useState(false);
 

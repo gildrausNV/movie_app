@@ -5,8 +5,10 @@ import img from '../Images/oppenheimer2.jpeg';
 import { MdEmail } from "react-icons/md";
 import usePostData from '../customHooks/usePostData';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
 
 const Register = () => {
+    const { setUser } = useAuth();
     const navigate = useNavigate();
     const [registerData, setRegisterData] = useState({
         username: "",
@@ -26,10 +28,9 @@ const Register = () => {
         }))
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        postData("http://localhost:8080/auth/register", registerData);
-
+        await postData("http://localhost:8080/auth/register", registerData);
     };
 
     useEffect(() => {
@@ -38,6 +39,7 @@ const Register = () => {
             localStorage.setItem("id", id);
             localStorage.setItem("token", token);
             localStorage.setItem("role", role);
+            setUser(response);
             navigate("/movies");
         }
     }, [response]);

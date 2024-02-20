@@ -12,6 +12,29 @@
 
   .comment{
     margin-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 20px;
+  }
+
+  .delete-icon-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    height: 20px;
+  }
+
+  .delete-icon{
+    width: 20px;
+    height: 20px;
+    margin-top: 5px;
+  }
+
+  .delete-icon:hover{
+    color: red;
+    cursor: pointer;
+    transition: 0.5s;
   }
   
   .modal-title {
@@ -32,6 +55,8 @@
   .input{
     width: 85%;
     height: 100%;
+    /* margin: 5px; */
+    border-radius: 10px;
   }
 
   .submit-comment-button-container{

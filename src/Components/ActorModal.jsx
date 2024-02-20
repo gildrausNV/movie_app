@@ -1,8 +1,10 @@
 import { Box, Modal } from '@mui/material';
 import './ActorModal.css';
 import { FaUser } from 'react-icons/fa';
+import { useAuth } from '../AuthContext';
 
 const ActorModal = ({ open, onClose, actor }) => {
+    const { user } = useAuth();
 
     return (
         <Modal

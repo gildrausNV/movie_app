@@ -9,16 +9,16 @@
 }
 
 .user-info {
-    width: 150px;
+    width: 180px;
 }
 
 .user-details {
     height: 300px;
 }
 
-.user-picture {
-    /* height: ; */
-}
+/* .user-picture {
+    
+} */
 
 .user-picture {
     width: 100px;
@@ -31,10 +31,15 @@
     justify-content: center;
 }
 
-.watchlist{
-    /* margin: 10px; */
-    margin-left: 60px;
+.user-name{
     display: flex;
-    flex-wrap: wrap;
-    width: 700px;
+    align-items: center;
+    justify-content: center;
 }
+ .watchlist{
+    margin-left: 10px;
+}
+
+/*.watchlist-container{
+    
+} */
