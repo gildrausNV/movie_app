@@ -30,25 +30,13 @@ const Login = ({ setToken, setId, setIsAdmin, setUserContext }) => {
   useEffect(() => {
     if (response != null) {
       const { token, id, role } = response;
-      localStorage.setItem("id", id);
-      localStorage.setItem("token", token);
-      localStorage.setItem("role", role);
-      navigate("/movies");
-      //   setToken(token);
-      //   setId(id);
-      //   setIsAdmin(role === "ADMIN");
-      //   setUserContext({
-      //     id,
-      //     token,
-      //     isAdmin: role === "ADMIN",
-      //   });
       setUser(response);
+      navigate("/movies");
     }
   }, [response]);
 
   useEffect(() => {
-    localStorage.clear();
-    // setToken(null);
+    setUser(null);
   }, []);
 
   return (

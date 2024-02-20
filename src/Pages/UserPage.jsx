@@ -9,11 +9,10 @@ import { useAuth } from '../AuthContext';
 const UserPage = () => {
     const { user } = useAuth();
     const { data, error, loading, refetchData } = useFetchData("http://localhost:8080/users/watchlist", user.token);
-    const [movies, setMovies] = useState([]);
 
     useEffect(() => {
-        setMovies(data?.movies);
-    }, [data])
+        console.log("TEST: " + loading);
+    }, [loading])
 
     return (
         <div className="user-page">
