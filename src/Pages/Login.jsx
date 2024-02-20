@@ -44,15 +44,12 @@ const Login = ({ setToken, setId, setRole }) => {
   }, [response]);
 
   useEffect(() => {
-    // setUser(null);
+    setUser(null);
+    localStorage.clear();
   }, []);
 
   if (loading) {
     return <Loading />;
-  }
-
-  if (error) {
-    return <Error message={error.message} />;
   }
 
   return (
@@ -93,6 +90,7 @@ const Login = ({ setToken, setId, setRole }) => {
           <div className="register-link">
             <Link to={'/register'}>Create an account!</Link>
           </div>
+          {error && <Error message={"Incorrect username or password, try again!"} />}
         </form>
       </div>
     </div>
