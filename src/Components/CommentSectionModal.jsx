@@ -27,7 +27,9 @@ const CommentSectionModal = ({ open, onClose, movieId }) => {
 
   const handleSubmit = async () => {
     if (comment.trim() !== "") {
-      await postData("http://localhost:8080/comments/" + movieId, comment);
+      await postData("http://localhost:8080/comments/" + movieId, {
+        content: comment
+      });
       setComment("");
       refetchData();
     }

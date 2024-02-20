@@ -14,7 +14,7 @@ const useFetchData = (initialUrl) => {
       const headers = token ? { Authorization: `Bearer ${token}` } : {};
       const response = await axios.get(url, { headers });
       setData(response.data);
-      console.log(response);
+      // console.log(response);
     } catch (error) {
       setError(error);
     }

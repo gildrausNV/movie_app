@@ -25,21 +25,24 @@ const MovieDetailsPage = () => {
     const { postData } = usePostData();
     const { deleteData } = useDeleteData();
 
-    const handleAddToWatchlist = () => {
-        postData('http://localhost:8080/users/watchlist/' + movieId);
+    const handleAddToWatchlist = async () => {
+        await postData('http://localhost:8080/users/watchlist/' + movieId);
         refetchWatchlistData();
-        setIsInMyWatchlist(prevIsInMyWatchlist => !prevIsInMyWatchlist);
+        // setIsInMyWatchlist(prevIsInMyWatchlist => !prevIsInMyWatchlist);
     }
-    
-    const handleRemoveFromWatchlist = () => {
-        deleteData('http://localhost:8080/users/watchlist/' + movieId);
+
+    const handleRemoveFromWatchlist = async () => {
+        await deleteData('http://localhost:8080/users/watchlist/' + movieId);
         refetchWatchlistData();
-        setIsInMyWatchlist(prevIsInMyWatchlist => !prevIsInMyWatchlist);
     }
 
     useEffect(() => {
-        setIsInMyWatchlist(isInMyWatchlistData);
-    }, [])
+        // console.log("isInMyWatchlistData:", isInMyWatchlistData);
+        if (isInMyWatchlistData !== undefined) {
+            setIsInMyWatchlist(isInMyWatchlistData);
+        }
+    }, [isInMyWatchlistData]);
+    
 
     const [showCommentModal, setShowCommentModal] = useState(false);
 
@@ -59,11 +62,11 @@ const MovieDetailsPage = () => {
                         <p><strong>Release Date:</strong> {movie.releaseDate}</p>
                         <p><strong>Description:</strong> {movie.description}</p>
                         <div className="actors">
-                            {movie.roles.map((actor) => <Actor actor={actor} key={actor.id} />)}
+                            {movie.roles.map((actor, index) => <Actor actor={actor} key={index} />)}
                         </div>
                         <div className="input-container">
                             {/* <div className="comment-button"> */}
-                                <button className='comment-button' onClick={handleToggleCommentModal}>Show comment section</button>
+                            <button className='comment-button' onClick={handleToggleCommentModal}>Show comment section</button>
                             {/* </div> */}
                             <div className="like-button">
                                 {!isInMyWatchlist ? <MdOutlineRemoveRedEye className='like-icon' onClick={handleAddToWatchlist} /> : <IoIosEyeOff className='like-icon' onClick={handleRemoveFromWatchlist} />}
