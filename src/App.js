@@ -12,21 +12,27 @@ import { useContext, useEffect, useState } from "react";
 import { AuthProvider, useAuth } from './AuthContext';
 
 function App() {
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
+  
   // const [user, setUser] = useState({
   //   token: localStorage.getItem('token') || null,
   //   id: localStorage.getItem('id') || null,
   //   role: localStorage.getItem('role') || null
   // })
-  // const [token, setToken] = useState(localStorage.getItem('token') || null);
-  // const [id, setId] = useState(localStorage.getItem('id') || null);
-  // const [role, setRole] = useState(localStorage.getItem('role') || null);
+  const [token, setToken] = useState(localStorage.getItem('token') || null);
+  const [id, setId] = useState(localStorage.getItem('id') || null);
+  const [role, setRole] = useState(localStorage.getItem('role') || null);
 
-  // useEffect(() => {
-  //   setId(localStorage.getItem('id'));
-  //   setToken(localStorage.getItem('token'));
-  //   setRole(localStorage.getItem('role'));
-  // }, [localStorage.getItem('role'), localStorage.getItem('id'), localStorage.getItem('token')])
+  useEffect(() => {
+    setId(localStorage.getItem('id'));
+    setToken(localStorage.getItem('token'));
+    setRole(localStorage.getItem('role'));
+    setUser({
+      id,
+      token,
+      role
+    });
+  }, [localStorage.getItem('role'), localStorage.getItem('id'), localStorage.getItem('token')])
 
   return (
     <div className="App">
@@ -45,7 +51,7 @@ function App() {
 
             <Routes>
               <Route path="/" element={<Login />} />
-              <Route path='/login' element={<Login/>} />
+              <Route path='/login' element={<Login setId={setId} setToken={setToken} setRole={setRole}/>} />
               <Route path="/register" element={<Register />} />
               <Route path="/movies" element={<MoviesPage />} />
               <Route path="/movieDetails/:movieId" element={<MovieDetailsPage />} />

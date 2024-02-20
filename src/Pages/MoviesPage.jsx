@@ -5,11 +5,21 @@ import { useNavigate } from 'react-router-dom';
 import useFetchData from '../customHooks/useFetchData';
 import img from '../Images/inception.jpg';
 import { useAuth } from '../AuthContext';
+import Loading from '../Components/Loading';
+import Error from '../Components/Error';
 
 const MoviesPage = () => {
-    const { user } = useAuth();
+    // const { user } = useAuth();
     const navigate = useNavigate(); 
-    const { data: movies, error, loading, refetchData } = useFetchData('http://localhost:8080/movies', user.token);
+    const { data: movies, error, loading, refetchData } = useFetchData('http://localhost:8080/movies');
+
+    if (loading) {
+        return <Loading />;
+    }
+
+    if (error) {
+        return <Error message={error.message}/>;
+    }
 
     return (
         <div className="movies-page">

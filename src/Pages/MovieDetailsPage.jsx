@@ -15,16 +15,18 @@ import useFetchData from '../customHooks/useFetchData';
 import usePostData from '../customHooks/usePostData';
 import useDeleteData from '../customHooks/useDeleteData';
 import { useAuth } from '../AuthContext';
+import Loading from '../Components/Loading';
+import Error from '../Components/Error';
 
 const MovieDetailsPage = () => {
-    const { user } = useAuth();
+    // const { user } = useAuth();
     const { movieId } = useParams();
     const [isInMyWatchlist, setIsInMyWatchlist] = useState(false);
 
-    const { data: movie, error, loading, refetchData } = useFetchData('http://localhost:8080/movies/' + movieId, user.token);
-    const { data: isInMyWatchlistData, refetchData: refetchWatchlistData } = useFetchData('http://localhost:8080/movies/isInMyWatchlist/' + movieId, user.token);
-    const { postData } = usePostData(user.token);
-    const { deleteData } = useDeleteData(user.token);
+    const { data: movie, error, loading, refetchData } = useFetchData('http://localhost:8080/movies/' + movieId);
+    const { data: isInMyWatchlistData, refetchData: refetchWatchlistData } = useFetchData('http://localhost:8080/movies/isInMyWatchlist/' + movieId);
+    const { postData } = usePostData();
+    const { deleteData } = useDeleteData();
 
     const handleAddToWatchlist = async () => {
         await postData('http://localhost:8080/users/watchlist/' + movieId);
@@ -49,9 +51,14 @@ const MovieDetailsPage = () => {
         setShowCommentModal(!showCommentModal);
     };
 
-    
-    
+    if (loading) {
+        return <Loading />;
+    }
 
+    if (error) {
+        return <Error message={error.message}/>;
+    }
+    
     return (
         <div className="movie-details-page">
             {movie &&

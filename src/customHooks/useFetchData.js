@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const useFetchData = (initialUrl, token) => {
+const useFetchData = (initialUrl) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -10,7 +10,7 @@ const useFetchData = (initialUrl, token) => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      // const token = localStorage.getItem("token");
+      const token = localStorage.getItem("token");
       const headers = token ? { Authorization: `Bearer ${token}` } : {};
       const response = await axios.get(url, { headers });
       setData(response.data);

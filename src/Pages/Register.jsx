@@ -6,6 +6,8 @@ import { MdEmail } from "react-icons/md";
 import usePostData from '../customHooks/usePostData';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
+import Loading from '../Components/Loading';
+import Error from '../Components/Error';
 
 const Register = () => {
     const { setUser } = useAuth();
@@ -47,6 +49,14 @@ const Register = () => {
     useEffect(() => {
         localStorage.clear();
     }, []);
+
+    if (loading) {
+        return <Loading />;
+    }
+
+    if (error) {
+        return <Error message={error.message}/>;
+    }
 
 
     return (

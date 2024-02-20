@@ -4,13 +4,15 @@ import { FaUser } from 'react-icons/fa';
 import ActorModal from './ActorModal';
 import useFetchData from '../customHooks/useFetchData';
 import { useAuth } from '../AuthContext';
+import Loading from './Loading';
+import Error from './Error';
 
 const Actor = ({ role }) => {
-    const { user } = useAuth();
+    // const { user } = useAuth();
 
     const url = "http://localhost:8080/actors/" + role?.actorId;
 
-    const { data: actor, error, loading, refetchData } = useFetchData(url, user.token);
+    const { data: actor, error, loading, refetchData } = useFetchData(url);
 
     const [showActorModal, setShowActorModal] = useState(false);
 
@@ -18,13 +20,20 @@ const Actor = ({ role }) => {
         setShowActorModal(!showActorModal);
     };
 
+    if (loading) {
+        return <Loading />;
+    }
+
+    if (error) {
+        return <Error message={error.message}/>;
+    }
+
     return ( 
         <div className="actor" onClick={handleToggleActorModal}>
             <div className="actor-icon">
                 <FaUser className="user-icon" />
             </div>
             <div className="actor-info">
-                {/* <h4>{actor.firstname} {actor.lastName}</h4> */}
                 <h4>{role.role}</h4>
             </div>
             <ActorModal open={showActorModal} onClose={handleToggleActorModal} actor={actor}/>

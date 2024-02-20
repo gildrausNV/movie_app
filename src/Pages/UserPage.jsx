@@ -5,14 +5,20 @@ import Movie from '../Components/Movie';
 import useFetchData from '../customHooks/useFetchData';
 import { useEffect, useState } from 'react';
 import { useAuth } from '../AuthContext';
+import Loading from '../Components/Loading';
+import Error from '../Components/Error';
 
 const UserPage = () => {
     const { user } = useAuth();
-    const { data, error, loading, refetchData } = useFetchData("http://localhost:8080/users/watchlist", user.token);
+    const { data, error, loading, refetchData } = useFetchData("http://localhost:8080/users/watchlist");
 
-    useEffect(() => {
-        console.log("TEST: " + loading);
-    }, [loading])
+    if (loading) {
+        return <Loading />;
+    }
+
+    if (error) {
+        return <Error message={error.message}/>;
+    }
 
     return (
         <div className="user-page">
@@ -29,7 +35,6 @@ const UserPage = () => {
             <div className="watchlist-container">
                 <h1>My watchlist</h1>
                 <div className="watchlist">
-
                     {data?.movies?.map((movie) => (
                         <Movie movie={movie} />
                     ))}
@@ -37,6 +42,7 @@ const UserPage = () => {
             </div>
         </div>
     );
+
 }
 
 export default UserPage;

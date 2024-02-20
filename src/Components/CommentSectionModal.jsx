@@ -7,18 +7,19 @@ import usePostData from "../customHooks/usePostData";
 import { TiDelete } from "react-icons/ti";
 import useDeleteData from "../customHooks/useDeleteData";
 import { useAuth } from "../AuthContext";
+import Loading from "./Loading";
+import Error from "./Error";
 
 const CommentSectionModal = ({ open, onClose, movieId }) => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
   const [comments, setComments] = useState([]);
   const { data: fetchedComments, getError, getLoading, refetchData } = useFetchData(
-    "http://localhost:8080/comments/movie/" + movieId,
-    user.token
+    "http://localhost:8080/comments/movie/" + movieId
   );
-  
-  const { postData, response } = usePostData(user.token);
 
-  const { deleteData } = useDeleteData(user.token);
+  const { postData, response } = usePostData();
+
+  const { deleteData } = useDeleteData();
 
   const [comment, setComment] = useState("");
   const inputRef = useRef(null);
@@ -48,6 +49,14 @@ const CommentSectionModal = ({ open, onClose, movieId }) => {
     refetchData();
   }
 
+  if (getLoading) {
+    return <Loading />;
+  }
+
+  if (getError) {
+    return <Error message={getError.message}/>;
+  }
+
   return (
     <Modal
       open={open}
@@ -68,7 +77,7 @@ const CommentSectionModal = ({ open, onClose, movieId }) => {
                 {comment.content}
               </div>
               <div className="delete-icon-container">
-                {comment.user.id === user.id && <TiDelete className="delete-icon" onClick={() => handleDelete(comment.id)}/>}
+                {comment.user.id === localStorage.getItem("id") && <TiDelete className="delete-icon" onClick={() => handleDelete(comment.id)} />}
               </div>
             </div>
           ))}

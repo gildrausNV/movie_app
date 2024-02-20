@@ -4,8 +4,10 @@ import "./Style/Login.css";
 import usePostData from "../customHooks/usePostData";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
+import Loading from "../Components/Loading";
+import Error from "../Components/Error";
 
-const Login = ({ setToken, setId, setIsAdmin, setUserContext }) => {
+const Login = ({ setToken, setId, setRole }) => {
   const { setUser } = useAuth();
   const navigate = useNavigate();
   const { response, postData, loading, error } = usePostData();
@@ -30,14 +32,28 @@ const Login = ({ setToken, setId, setIsAdmin, setUserContext }) => {
   useEffect(() => {
     if (response != null) {
       const { token, id, role } = response;
+      setId(id);
+      setToken(token);
+      setRole(role);
+      localStorage.setItem("id", id);
+      localStorage.setItem("token", token);
+      localStorage.setItem("role", role);
       setUser(response);
       navigate("/movies");
     }
   }, [response]);
 
   useEffect(() => {
-    setUser(null);
+    // setUser(null);
   }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <Error message={error.message} />;
+  }
 
   return (
     <div className="login">
@@ -72,7 +88,7 @@ const Login = ({ setToken, setId, setIsAdmin, setUserContext }) => {
             <button type="submit" disabled={loading}>
               Login
             </button>
-            
+
           </div>
           <div className="register-link">
             <Link to={'/register'}>Create an account!</Link>
