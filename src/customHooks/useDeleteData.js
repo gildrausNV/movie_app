@@ -7,7 +7,6 @@ const useDeleteData = () => {
   const [error, setError] = useState(null);
 
   const deleteData = async (url) => {
-    console.log("REMOVE FROM WATCHLIST");
     setLoading(true);
     try {
       const token = localStorage.getItem("token");

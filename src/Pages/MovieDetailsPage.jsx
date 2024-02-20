@@ -28,7 +28,6 @@ const MovieDetailsPage = () => {
     const handleAddToWatchlist = async () => {
         await postData('http://localhost:8080/users/watchlist/' + movieId);
         refetchWatchlistData();
-        // setIsInMyWatchlist(prevIsInMyWatchlist => !prevIsInMyWatchlist);
     }
 
     const handleRemoveFromWatchlist = async () => {
@@ -37,7 +36,6 @@ const MovieDetailsPage = () => {
     }
 
     useEffect(() => {
-        // console.log("isInMyWatchlistData:", isInMyWatchlistData);
         if (isInMyWatchlistData !== undefined) {
             setIsInMyWatchlist(isInMyWatchlistData);
         }
@@ -49,6 +47,9 @@ const MovieDetailsPage = () => {
     const handleToggleCommentModal = () => {
         setShowCommentModal(!showCommentModal);
     };
+
+    
+    
 
     return (
         <div className="movie-details-page">
@@ -62,7 +63,7 @@ const MovieDetailsPage = () => {
                         <p><strong>Release Date:</strong> {movie.releaseDate}</p>
                         <p><strong>Description:</strong> {movie.description}</p>
                         <div className="actors">
-                            {movie.roles.map((actor, index) => <Actor actor={actor} key={index} />)}
+                            {movie.roles.map((role, index) => <Actor role={role} key={index} />)}
                         </div>
                         <div className="input-container">
                             {/* <div className="comment-button"> */}

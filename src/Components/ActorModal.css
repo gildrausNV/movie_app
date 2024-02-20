@@ -1,0 +1,20 @@
+.actor-modal-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background-color: #222; /* Dark background color */
+    color: #fff; /* Text color */
+    border-radius: 10px; /* Rounded corners */
+    padding: 24px;
+    display: flex;
+    align-items: center;
+  }
+
+  .actor-info-modal{
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

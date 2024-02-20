@@ -7,7 +7,6 @@ const usePostData = () => {
   const [error, setError] = useState(null);
 
   const postData = async (url, postData) => {
-    console.log("ADD TO WATCHLIST");
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
