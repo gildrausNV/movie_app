@@ -26,7 +26,7 @@ const MoviesPage = () => {
             <div className="movies">
                 {movies && movies.map((movie, index) => (
                     <div className="movie" key={movie.id} onClick={() => navigate('/movieDetails/' + movie.id)}>
-                        <Paper className="movie-paper" style={{ backgroundImage: `url(${img})` }}>
+                        <Paper className="movie-paper" style={{ backgroundImage: `url(${movie.image})` }}>
                             <div className="overlay">
                                 <h2 className="title">{movie.title}</h2>
                                 <p className="release-date">{movie.releaseDate}</p>

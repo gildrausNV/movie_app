@@ -6,12 +6,13 @@ import { useAuth } from '../AuthContext';
 const Movie = ({ movie }) => {
     const navigate = useNavigate();
     const { user } = useAuth();
+    console.log(movie);
 
     return ( 
         <div className="watchlist-movie">
             {/* <>test</> */}
             {/* <img src={poster} alt={movie.title} className='watchlist-poster'/> */}
-            <img src={poster} alt="" className='watchlist-poster' onClick={() => navigate('/movieDetails/' + movie.id)}/>
+            <img src={movie.image} alt="" className='watchlist-poster' onClick={() => navigate('/movieDetails/' + movie.id)}/>
         </div>
      );
 }

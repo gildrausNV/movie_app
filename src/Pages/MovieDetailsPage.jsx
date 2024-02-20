@@ -64,7 +64,7 @@ const MovieDetailsPage = () => {
             {movie &&
                 <div className="movie-details-container">
                     <div className="movie-details-image">
-                        <img src={img} alt={movie.title} />
+                        <img src={movie.image} alt={movie.title} />
                     </div>
                     <div className="movie-details-content">
                         <h2>{movie.title}</h2>

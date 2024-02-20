@@ -38,6 +38,7 @@
 }
  .watchlist{
     margin-left: 10px;
+    display: flex;
 }
 
 /*.watchlist-container{

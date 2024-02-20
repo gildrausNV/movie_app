@@ -31,7 +31,8 @@ const Actor = ({ role }) => {
     return ( 
         <div className="actor" onClick={handleToggleActorModal}>
             <div className="actor-icon">
-                <FaUser className="user-icon" />
+                {actor?.image ? <img src={actor.image} alt="" className='user-avatar'/> : <FaUser className="user-icon" /> }
+                
             </div>
             <div className="actor-info">
                 <h4>{role.role}</h4>

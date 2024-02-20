@@ -9,7 +9,7 @@ import Loading from '../Components/Loading';
 import Error from '../Components/Error';
 
 const UserPage = () => {
-    const { user } = useAuth();
+    // const { user } = useAuth();
     const { data, error, loading, refetchData } = useFetchData("http://localhost:8080/users/watchlist");
 
     if (loading) {
