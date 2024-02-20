@@ -4,12 +4,16 @@ import { FaUserAlt } from "react-icons/fa";
 import useMovieData from './useMovieData';
 import Movie from '../Components/Movie';
 import useFetchData from '../customHooks/useFetchData';
+import { useEffect, useState } from 'react';
 
 const UserPage = () => {
-    // const { movies } = useMovieData();
 
-    const { data: movies, error, loading, refetchData } = useFetchData("http://localhost:8080/users/watchlist");
+    const { data, error, loading, refetchData } = useFetchData("http://localhost:8080/users/watchlist");
+    const [movies, setMovies] = useState([]);
 
+    useEffect(() => {
+        setMovies(data?.movies);
+    }, [data])
 
     return (
         <div className="user-page">
@@ -26,8 +30,9 @@ const UserPage = () => {
                 </div>
             </div>
             <div className="watchlist">
-                {movies && movies.map((movie) => (
+                {movies?.map((movie) => (
                     <Movie movie={movie}/>
+                    // <>test</>
                 ))}
             </div>
         </div>

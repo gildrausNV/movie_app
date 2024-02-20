@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Style/MovieDetailsPage.css';
 import img from '../Images/inception.jpg';
 import actors from './useActorsData';
@@ -10,6 +10,7 @@ import { FaHeart } from "react-icons/fa";
 import CommentSectionModal from '../Components/CommentSectionModal';
 import { CiCircleRemove } from "react-icons/ci";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { IoIosEyeOff } from "react-icons/io";
 import { useParams } from 'react-router-dom';
 import useFetchData from '../customHooks/useFetchData';
 import usePostData from '../customHooks/usePostData';
@@ -17,28 +18,28 @@ import useDeleteData from '../customHooks/useDeleteData';
 
 const MovieDetailsPage = () => {
     const { movieId } = useParams();
+    const [isInMyWatchlist, setIsInMyWatchlist] = useState(false);
 
     const { data: movie, error, loading, refetchData } = useFetchData('http://localhost:8080/movies/' + movieId);
-    const {data: isInMyWatchlist} = useFetchData('http://localhost:8080/movies/isInMyWatchlist/' + movieId);
+    const { data: isInMyWatchlistData, refetchData: refetchWatchlistData } = useFetchData('http://localhost:8080/movies/isInMyWatchlist/' + movieId);
     const { postData } = usePostData();
     const { deleteData } = useDeleteData();
 
     const handleAddToWatchlist = () => {
         postData('http://localhost:8080/users/watchlist/' + movieId);
+        refetchWatchlistData();
+        setIsInMyWatchlist(prevIsInMyWatchlist => !prevIsInMyWatchlist);
     }
-
+    
     const handleRemoveFromWatchlist = () => {
         deleteData('http://localhost:8080/users/watchlist/' + movieId);
+        refetchWatchlistData();
+        setIsInMyWatchlist(prevIsInMyWatchlist => !prevIsInMyWatchlist);
     }
 
-    // const [movie, setMovie] = useState({
-    //     name: "Inception",
-    //     releaseDate: "2010-07-16",
-    //     description: "A thief who enters the dreams of others to steal their secrets from their subconscious.",
-    //     image: '',
-    //     liked: false,
-    //     inWatchlist: false
-    // });
+    useEffect(() => {
+        setIsInMyWatchlist(isInMyWatchlistData);
+    }, [])
 
     const [showCommentModal, setShowCommentModal] = useState(false);
 
@@ -48,32 +49,30 @@ const MovieDetailsPage = () => {
 
     return (
         <div className="movie-details-page">
-            {movie && 
-            <div className="movie-details-container">
-                <div className="movie-details-image">
-                    <img src={img} alt={movie.title} />
-                </div>
-                <div className="movie-details-content">
-                    <h2>{movie.title}</h2>
-                    <p><strong>Release Date:</strong> {movie.releaseDate}</p>
-                    <p><strong>Description:</strong> {movie.description}</p>
-                    <div className="actors">
-                        {movie.roles.map((actor) => <Actor actor={actor} key={actor.id}/>)}
+            {movie &&
+                <div className="movie-details-container">
+                    <div className="movie-details-image">
+                        <img src={img} alt={movie.title} />
                     </div>
-                    <div className="input-container">
-                    <div className="comment-button">
-                            <button onClick={handleToggleCommentModal}>Show comment section</button>
+                    <div className="movie-details-content">
+                        <h2>{movie.title}</h2>
+                        <p><strong>Release Date:</strong> {movie.releaseDate}</p>
+                        <p><strong>Description:</strong> {movie.description}</p>
+                        <div className="actors">
+                            {movie.roles.map((actor) => <Actor actor={actor} key={actor.id} />)}
                         </div>
-                        <div className="like-button">
-                            {/* <CiCircleRemove className='like-icon'/> */}
-                            {!isInMyWatchlist ? <MdOutlineRemoveRedEye className='like-icon' onClick={handleAddToWatchlist}/> : <div onClick={handleRemoveFromWatchlist}>REMOVE</div>}
-                            <FaHeart className='like-icon'/>
+                        <div className="input-container">
+                            {/* <div className="comment-button"> */}
+                                <button className='comment-button' onClick={handleToggleCommentModal}>Show comment section</button>
+                            {/* </div> */}
+                            <div className="like-button">
+                                {!isInMyWatchlist ? <MdOutlineRemoveRedEye className='like-icon' onClick={handleAddToWatchlist} /> : <IoIosEyeOff className='like-icon' onClick={handleRemoveFromWatchlist} />}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>}
-            
-            <CommentSectionModal open={showCommentModal} onClose={handleToggleCommentModal} movieId={movieId}/>
+                </div>}
+
+            <CommentSectionModal open={showCommentModal} onClose={handleToggleCommentModal} movieId={movieId} />
         </div>
     );
 }

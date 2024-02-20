@@ -3,7 +3,7 @@ import { FaUser, FaLock } from "react-icons/fa";
 import "./Style/Login.css";
 import usePostData from "../customHooks/usePostData";
 import authContext from "../AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = ({ setToken, setId, setIsAdmin, setUserContext }) => {
   const { user } = useContext(authContext);
@@ -84,6 +84,10 @@ const Login = ({ setToken, setId, setIsAdmin, setUserContext }) => {
             <button type="submit" disabled={loading}>
               Login
             </button>
+            
+          </div>
+          <div className="register-link">
+            <Link to={'/register'}>Create an account!</Link>
           </div>
         </form>
       </div>

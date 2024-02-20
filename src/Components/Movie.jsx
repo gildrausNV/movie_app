@@ -7,7 +7,9 @@ const Movie = ({ movie }) => {
 
     return ( 
         <div className="watchlist-movie">
-            <img src={poster} alt="" className='watchlist-poster' onClick={() => navigate('/movieDetails')}/>
+            {/* <>test</> */}
+            {/* <img src={poster} alt={movie.title} className='watchlist-poster'/> */}
+            {/* <img src={poster} alt="" className='watchlist-poster' onClick={() => navigate('/movieDetails')}/> */}
         </div>
      );
 }

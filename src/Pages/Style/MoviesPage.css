@@ -42,16 +42,23 @@
     align-items: center;
     opacity: 0;
     transition: opacity 0.3s ease;
-}
-
-.movie-paper:hover .overlay {
-    opacity: 1;
+    /* Center the text horizontally and allow it to span multiple lines */
+    text-align: center;
 }
 
 .title {
     margin-bottom: 5px;
+    /* Ensure that the title can span multiple lines */
+    white-space: normal;
+    /* Limit the width of the title to prevent it from overflowing */
+    max-width: 90%;
 }
+
 
 .release-date {
     font-size: 0.8rem;
+}
+
+.movie-paper:hover .overlay {
+    opacity: 1;
 }

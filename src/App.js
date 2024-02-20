@@ -12,16 +12,20 @@ import { useContext, useEffect, useState } from "react";
 import authContext from "./AuthContext.jsx";
 
 function App() {
-  // const auth = useContext(authContext);
-
   const [user, setUser] = useState({
     token: localStorage.getItem('token') || null,
     id: localStorage.getItem('id') || null,
-    isAdmin: localStorage.getItem('isAdmin') || null
+    role: localStorage.getItem('role') || null
   })
   const [token, setToken] = useState(localStorage.getItem('token') || null);
   const [id, setId] = useState(localStorage.getItem('id') || null);
-  const [isAdmin, setIsAdmin] = useState(localStorage.getItem('isAdmin') || null);
+  const [role, setRole] = useState(localStorage.getItem('role') || null);
+
+  useEffect(() => {
+    setId(localStorage.getItem('id'));
+    setToken(localStorage.getItem('token'));
+    setRole(localStorage.getItem('role'));
+  }, [localStorage.getItem('role'), localStorage.getItem('id'), localStorage.getItem('token')])
 
   return (
     <div className="App">
@@ -29,17 +33,19 @@ function App() {
         <Router>
           <div className="page">
             <div className="icons-container">
-              <Link to={"/movies"}>
-                <MdLocalMovies className="menu-icon" />
-              </Link>
-              <Link to={"/user"}>
-                <FaUser className="menu-icon" />
-              </Link>
+              {id && <>
+                <Link to={"/movies"}>
+                  <MdLocalMovies className="menu-icon" />
+                </Link>
+                <Link to={"/user"}>
+                  <FaUser className="menu-icon" />
+                </Link>
+              </>}
             </div>
 
             <Routes>
               <Route path="/" element={<Login />} />
-              <Route path='/login' element={<Login setToken={setToken} setId={setId} setIsAdmin={setIsAdmin} setUserContext={setUser} />} />
+              <Route path='/login' element={<Login setToken={setToken} setId={setId} setRole={setRole} setUserContext={setUser} />} />
               <Route path="/register" element={<Register />} />
               <Route path="/movies" element={<MoviesPage />} />
               <Route path="/movieDetails/:movieId" element={<MovieDetailsPage />} />
