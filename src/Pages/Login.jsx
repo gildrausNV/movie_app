@@ -85,7 +85,6 @@ const Login = ({ setToken, setId, setRole }) => {
             <button type="submit" disabled={loading}>
               Login
             </button>
-
           </div>
           <div className="register-link">
             <Link to={'/register'}>Create an account!</Link>

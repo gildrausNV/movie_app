@@ -25,7 +25,7 @@ const UserPage = () => {
             <div className="user-info">
                 <div className="user-details">
                     <div className="user-image-container">
-                        <FaUserAlt className='user-picture' />
+                        {data && data?.user.avatar !== "" ? <img src={data?.user.avatar} alt="" className='user-avatar'/> : <FaUserAlt className='user-picture' />}
                     </div>
                     <div className="user-name">
                         <h2>{data?.user.firstName} {data?.user.lastName}</h2>

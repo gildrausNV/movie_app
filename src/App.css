@@ -84,3 +84,9 @@
 .error-message {
   font-size: 14px;
 }
+
+.user-avatar{
+  width: 150px;
+  height: 150px;
+  border-radius: 100px;
+}

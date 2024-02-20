@@ -17,7 +17,8 @@ const Register = () => {
         password: "",
         email: "",
         firstname: "",
-        lastname: ""
+        lastname: "",
+        avatar: ""
     });
 
     const { response, error, loading, postData } = usePostData();
@@ -50,12 +51,38 @@ const Register = () => {
         localStorage.clear();
     }, []);
 
+    const [fileToBig, setFileToBig] = useState(false);
+
+    const convertToBase64 = (e) => {
+        const file = e.target.files[0];
+        const maxSize = 1024 * 1024;
+    
+        if (file && file.size > maxSize) {
+            setFileToBig(prevState => ( !prevState ));
+            console.log("File size exceeds the maximum allowed size.");
+            return;
+        }
+    
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            setRegisterData(prevData => ({
+                ...prevData,
+                avatar: reader.result
+            }))
+        }
+        reader.onerror = error => {
+            console.log("Error: ", error);
+        }
+    }
+    
+
     if (loading) {
         return <Loading />;
     }
 
     if (error) {
-        return <Error message={error.message}/>;
+        return <Error message={error.message} />;
     }
 
 
@@ -121,6 +148,13 @@ const Register = () => {
                             onChange={handleChange}
                         />
                     </div>
+                    <div className="input-container-avatar">
+                        <label htmlFor="">Chose your avatar</label>
+                        <input type="file" accept="image/*" onChange={convertToBase64} />
+                    </div>
+                    {fileToBig && <div className="input-container">
+                        <Error message={"File to big, try again"}/>
+                    </div>}
                     <div className="button-container">
                         <button>Register</button>
                     </div>
@@ -128,6 +162,7 @@ const Register = () => {
                         <Link to={'/login'}>Already have an account?</Link>
                     </div>
                 </form>
+                {/* <img src={registerData.avatar} className='user-avatar'/> */}
             </div>
         </div>
     );
