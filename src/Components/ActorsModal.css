@@ -1,0 +1,120 @@
+.modal-title {
+    margin: 0;
+    padding: 0;
+}
+
+.actors-modal-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    border-radius: 8px;
+    padding-left: 3px;
+}
+
+.actors-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.option-button {
+    background-color: #555;
+    border: none;
+    color: white;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.option-button.selected {
+    background-color: #008CBA; /* Blue */
+}
+
+.input-container-modal {
+    display: flex;
+    flex-direction: column;
+    margin-left: 42px;
+}
+
+.input-box-modal {
+    margin-bottom: 10px;
+    /* width: 90%; */
+}
+
+.label {
+    margin-bottom: 5px;
+}
+
+.input-box-modal input[type="text"],
+.actor-select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.actor-select{
+    width: 90%;
+}
+
+.existing-actor{
+    /* width: 90%; */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+.input-box-modal label {
+    font-weight: bold;
+}
+
+.add-button-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-button {
+    width: 150px;
+    padding: 10px 20px;
+    background-color: #008CBA; /* Blue */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+    background-color: #005f7a; /* Darker blue */
+}
+
+.user-icon{
+    width: 100px;
+    height: 100px;
+}
+
+ .role-input{
+    width: 90%;
+    margin-left: 15px;
+ } 
+  
+ 
+  

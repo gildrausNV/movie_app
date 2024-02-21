@@ -53,6 +53,7 @@ const MovieDetailsPage = () => {
     const handleToggleCommentModal = () => {
         setShowCommentModal(!showCommentModal);
     };
+    
 
     if (loading) {
         return <Loading />;
@@ -74,7 +75,7 @@ const MovieDetailsPage = () => {
                         <p><strong>Release Date:</strong> {movie.releaseDate}</p>
                         <p><strong>Description:</strong> {movie.description}</p>
                         <div className="actors">
-                            {movie.roles.map((role, index) => <Actor role={role} key={index} />)}
+                            {movie?.roles?.map((role, index) => <Actor role={role} key={index} />)}
                         </div>
                         <div className="comment-container">
                             {/* <div className="comment-button"> */}

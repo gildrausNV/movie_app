@@ -10,7 +10,8 @@ import { FaUser } from "react-icons/fa";
 import UserPage from "./Pages/UserPage";
 import { useContext, useEffect, useState } from "react";
 import { AuthProvider, useAuth } from './AuthContext';
-import EditMovie from "./Pages/EditMovie";
+import { MdAddToPhotos } from "react-icons/md";
+import MovieForm from "./Pages/MovieForm";
 
 function App() {
   const { user, setUser } = useAuth();
@@ -44,9 +45,11 @@ function App() {
                 <Link to={"/movies"}>
                   <MdLocalMovies className="menu-icon" />
                 </Link>
-                <Link to={"/user"}>
+                {role === "USER" ? <Link to={"/user"}>
                   <FaUser className="menu-icon" />
-                </Link>
+                </Link>: <Link to={"/addMovie"}>
+                  <MdAddToPhotos  className="menu-icon" />
+                </Link>}
               </>}
             </div>
 
@@ -57,7 +60,10 @@ function App() {
               <Route path="/movies" element={<MoviesPage />} />
               <Route path="/movieDetails/:movieId" element={<MovieDetailsPage />} />
               <Route path="/user" element={<UserPage />} />
-              <Route path="/edit/:movieId" element={<EditMovie />} />
+              {/* <Route path="/edit/:movieId" element={<EditMovie />} /> */}
+              {/* <Route path="/addMovie" element={<EditMovie />} /> */}
+              <Route path="/edit/:movieId" element={<MovieForm />} />
+              <Route path="/addMovie" element={<MovieForm />} />
             </Routes>
 
             <Link to={"/login"}>
