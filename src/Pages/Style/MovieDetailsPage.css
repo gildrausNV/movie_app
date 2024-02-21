@@ -43,7 +43,7 @@
     justify-content: space-between; 
 }
 
-.input-container{
+.comment-container{
     display: flex;
     justify-content: space-between;
     margin-left: 50px;

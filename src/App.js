@@ -10,6 +10,7 @@ import { FaUser } from "react-icons/fa";
 import UserPage from "./Pages/UserPage";
 import { useContext, useEffect, useState } from "react";
 import { AuthProvider, useAuth } from './AuthContext';
+import EditMovie from "./Pages/EditMovie";
 
 function App() {
   const { user, setUser } = useAuth();
@@ -56,6 +57,7 @@ function App() {
               <Route path="/movies" element={<MoviesPage />} />
               <Route path="/movieDetails/:movieId" element={<MovieDetailsPage />} />
               <Route path="/user" element={<UserPage />} />
+              <Route path="/edit/:movieId" element={<EditMovie />} />
             </Routes>
 
             <Link to={"/login"}>

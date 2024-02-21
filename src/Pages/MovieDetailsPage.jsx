@@ -10,16 +10,19 @@ import CommentSectionModal from '../Components/CommentSectionModal';
 import { CiCircleRemove } from "react-icons/ci";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { IoIosEyeOff } from "react-icons/io";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useFetchData from '../customHooks/useFetchData';
 import usePostData from '../customHooks/usePostData';
 import useDeleteData from '../customHooks/useDeleteData';
 import { useAuth } from '../AuthContext';
 import Loading from '../Components/Loading';
 import Error from '../Components/Error';
+import { CiEdit } from "react-icons/ci";
 
 const MovieDetailsPage = () => {
     // const { user } = useAuth();
+    const navigate = useNavigate();
+    const role = localStorage.getItem('role');
     const { movieId } = useParams();
     const [isInMyWatchlist, setIsInMyWatchlist] = useState(false);
 
@@ -73,12 +76,13 @@ const MovieDetailsPage = () => {
                         <div className="actors">
                             {movie.roles.map((role, index) => <Actor role={role} key={index} />)}
                         </div>
-                        <div className="input-container">
+                        <div className="comment-container">
                             {/* <div className="comment-button"> */}
                             <button className='comment-button' onClick={handleToggleCommentModal}>Show comment section</button>
                             {/* </div> */}
                             <div className="like-button">
-                                {!isInMyWatchlist ? <MdOutlineRemoveRedEye className='like-icon' onClick={handleAddToWatchlist} /> : <IoIosEyeOff className='like-icon' onClick={handleRemoveFromWatchlist} />}
+                                {role === "USER" ? (!isInMyWatchlist ? <MdOutlineRemoveRedEye className='like-icon' onClick={handleAddToWatchlist} />
+                                 : <IoIosEyeOff className='like-icon' onClick={handleRemoveFromWatchlist} />) : <CiEdit className='like-icon' onClick={() => navigate('/edit/' + movie.id)}/>}
                             </div>
                         </div>
                     </div>
