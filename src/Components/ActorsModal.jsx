@@ -4,17 +4,17 @@ import { FaUser } from 'react-icons/fa';
 import { useState } from 'react';
 import useFetchData from '../customHooks/useFetchData';
 import usePostData from '../customHooks/usePostData';
+import { useNavigate } from 'react-router-dom';
+import Error from './Error';
 
 const ActorsModal = ({ open, onClose, roles, setRoles }) => {
-    const { data: actors, loading, error } = useFetchData("http://localhost:8080/actors");
+    const navigate = useNavigate();
     const { response, loading: loadingPost, error: errorPost, postData } = usePostData();
     const [newActor, setNewActor] = useState({
         firstName: "",
         lastName: "",
         image: ""
     });
-
-
 
     const handleActorInputChange = (e) => {
         const { name, value } = e.target;
@@ -27,6 +27,11 @@ const ActorsModal = ({ open, onClose, roles, setRoles }) => {
 
     const handleAddActor = async () => {
         await postData("http://localhost:8080/actors", newActor);
+        navigate('/movies');
+    }
+
+    if(errorPost){
+        return <Error message={errorPost.message}/>
     }
 
     return (
@@ -60,7 +65,6 @@ const ActorsModal = ({ open, onClose, roles, setRoles }) => {
                             <label htmlFor="">Image url:</label>
                             <input type="text" name="image" id="image" onChange={handleActorInputChange} />
                         </div>
-
                     </div>
                     <div className="add-button-container">
                         <button className="add-button" onClick={handleAddActor}>Add actor</button>

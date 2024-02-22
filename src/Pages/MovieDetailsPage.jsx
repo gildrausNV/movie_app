@@ -20,7 +20,6 @@ import Error from '../Components/Error';
 import { CiEdit } from "react-icons/ci";
 
 const MovieDetailsPage = () => {
-    // const { user } = useAuth();
     const navigate = useNavigate();
     const role = localStorage.getItem('role');
     const { movieId } = useParams();
@@ -46,23 +45,23 @@ const MovieDetailsPage = () => {
             setIsInMyWatchlist(isInMyWatchlistData);
         }
     }, [isInMyWatchlistData]);
-    
+
 
     const [showCommentModal, setShowCommentModal] = useState(false);
 
     const handleToggleCommentModal = () => {
         setShowCommentModal(!showCommentModal);
     };
-    
+
 
     if (loading) {
         return <Loading />;
     }
 
     if (error) {
-        return <Error message={error.message}/>;
+        return <Error message={error.message} />;
     }
-    
+
     return (
         <div className="movie-details-page">
             {movie &&
@@ -78,12 +77,10 @@ const MovieDetailsPage = () => {
                             {movie?.roles?.map((role, index) => <Actor role={role} key={index} />)}
                         </div>
                         <div className="comment-container">
-                            {/* <div className="comment-button"> */}
                             <button className='comment-button' onClick={handleToggleCommentModal}>Show comment section</button>
-                            {/* </div> */}
                             <div className="like-button">
                                 {role === "USER" ? (!isInMyWatchlist ? <MdOutlineRemoveRedEye className='like-icon' onClick={handleAddToWatchlist} />
-                                 : <IoIosEyeOff className='like-icon' onClick={handleRemoveFromWatchlist} />) : <CiEdit className='like-icon' onClick={() => navigate('/edit/' + movie.id)}/>}
+                                    : <IoIosEyeOff className='like-icon' onClick={handleRemoveFromWatchlist} />) : <CiEdit className='like-icon' onClick={() => navigate('/edit/' + movie.id)} />}
                             </div>
                         </div>
                     </div>

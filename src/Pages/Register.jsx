@@ -162,7 +162,6 @@ const Register = () => {
                         <Link to={'/login'}>Already have an account?</Link>
                     </div>
                 </form>
-                {/* <img src={registerData.avatar} className='user-avatar'/> */}
             </div>
         </div>
     );

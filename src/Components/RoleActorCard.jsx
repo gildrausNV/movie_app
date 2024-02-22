@@ -1,9 +1,19 @@
 import useFetchData from "../customHooks/useFetchData";
+import Error from "./Error";
+import Loading from "./Loading";
 import './Roles.css';
 
 const RoleActorCard = ({ role }) => {
     const { data: actor, loading, error } = useFetchData("http://localhost:8080/actors/" + role.actorId);
-    console.log(actor);
+
+    if(loading){
+        return <Loading />
+    }
+
+    if(error){
+        return <Error message={error.message}/>
+    }
+    
     return (
         <div className="role-actor-card">
             <div className="actor-card-image">

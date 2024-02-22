@@ -41,7 +41,7 @@ function App() {
         <Router>
           <div className="page">
             <div className="icons-container">
-              {user && <>
+              {token && <>
                 <Link to={"/movies"}>
                   <MdLocalMovies className="menu-icon" />
                 </Link>

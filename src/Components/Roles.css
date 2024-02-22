@@ -5,9 +5,16 @@
 
 .role-actor-card{
     display: flex;
-    height: 50px;
+    height: 80px;
+    padding: 5px;
     width: 350px;
     margin-top: 20px;
+}
+
+.role-actor-card:hover{
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: 0.5s;
+    cursor: pointer;
 }
 
 .actor-card-info{
@@ -20,5 +27,10 @@
 
 .roles{
     color: white;
+    /* margin: 10px; */
+    background: rgba(0, 0, 0, 0.5); 
+    border-radius: 10px;
+    height: 600px;
+    margin-left: 10px;
     /* margin: 10px; */
 }

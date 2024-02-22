@@ -17,20 +17,19 @@ const MovieForm = () => {
     const [movie, setMovie] = useState({});
     const [roles, setRoles] = useState([]);
     const { data, loading, error } = useFetchData("http://localhost:8080/movies/" + movieId);
-    const { response, loadingPut, errorPut, updateData } = usePutData();
+    const { response, loading: loadingPut, error: errorPut, updateData } = usePutData();
     const { postResponse, loading: loadingPost, error: errorPost, postData } = usePostData();
 
     const handleSubmit = async () => {
-        if (movieId) {
-            const updatedMovie = {
+        const updatedMovie = {
                 ...movie,
                 roles: roles,
             };
 
+        if (movieId) {
             await updateData('http://localhost:8080/movies/' + movieId, updatedMovie);
-
         } else {
-            await postData('http://localhost:8080/movies', movie);
+            await postData('http://localhost:8080/movies', updatedMovie);
         }
     };
 
@@ -56,7 +55,7 @@ const MovieForm = () => {
     };
 
     const { data: actors, loadingActors, errorActors } = useFetchData("http://localhost:8080/actors");
-    const [role, setRole] = useState();
+    const [role, setRole] = useState({});
     const handleRoleInputChange = (e) => {
         const { name, value } = e.target;
         setRole((prevRole) => ({
@@ -74,7 +73,12 @@ const MovieForm = () => {
     };
 
     const handleAddRole = async () => {
-        setRoles((prevRoles) => [...prevRoles, role])
+        if(roles && roles.length > 0){
+            setRoles(prevRoles => [...prevRoles, role]);
+        }
+        else{
+            setRoles([role]);
+        }
     };
 
     if (loading || loadingPost || loadingPut) {
@@ -118,11 +122,8 @@ const MovieForm = () => {
                             ))}
                         </select>
                         <div className="input-box-modal">
-                            {/* <div> */}
                             <label htmlFor="">Role:</label>
                             <input type="text" name="role" id="roleName" onChange={handleRoleInputChange} value={role?.role} />
-                            {/* </div> */}
-                            
                             <button className="add-button" onClick={handleAddRole} type='button'>Add role</button>
                         </div>
                         
@@ -134,13 +135,6 @@ const MovieForm = () => {
                     </div>
                 </div>
             </form>
-            {/* <div className="roles">
-                roles: {roles?.map((role, index) => (
-                    <div key={index} className="role">
-                        {role.role}
-                    </div>
-                ))}
-            </div> */}
             <Roles roles={roles}/>
             <ActorsModal open={showActorsModal} onClose={handleToggleActorsModal} roles={roles} setRoles={setRoles} />
         </div>

@@ -4,9 +4,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
-    background-color: #222; /* Dark background color */
-    color: #fff; /* Text color */
-    border-radius: 10px; /* Rounded corners */
+    background-color: #222;
+    color: #fff;
+    border-radius: 10px;
     padding: 24px;
   }
 
