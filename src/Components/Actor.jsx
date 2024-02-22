@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './Actor.css';
+import './Style/Actor.css';
 import { FaUser } from 'react-icons/fa';
 import ActorModal from './ActorModal';
 import useFetchData from '../customHooks/useFetchData';

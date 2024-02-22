@@ -1,5 +1,5 @@
 import RoleActorCard from './RoleActorCard';
-import './Roles.css';
+import './Style/Roles.css';
 
 const Roles = ({ roles }) => {
     return ( 

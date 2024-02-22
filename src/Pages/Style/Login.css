@@ -6,10 +6,10 @@
 }
 
 .login-form, .register-form {
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    background: rgba(0, 0, 0, 0.5); 
     padding: 15px;
     width: 280px;
-    height: auto; /* Adjusted to accommodate content */
+    height: auto; 
     border-radius: 10px;
     color: white;
     border: 1px solid #f7f7f7;

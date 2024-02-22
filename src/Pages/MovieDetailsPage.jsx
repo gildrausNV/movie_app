@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './Style/MovieDetailsPage.css';
-import img from '../Images/inception.jpg';
 import Actor from '../Components/Actor';
 import { Button, Input } from '@mui/material';
 import { GrLike } from "react-icons/gr";

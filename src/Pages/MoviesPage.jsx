@@ -3,26 +3,46 @@ import './Style/MoviesPage.css';
 import { Paper } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import useFetchData from '../customHooks/useFetchData';
-import img from '../Images/inception.jpg';
 import { useAuth } from '../AuthContext';
 import Loading from '../Components/Loading';
 import Error from '../Components/Error';
+import { Search } from '@mui/icons-material';
 
 const MoviesPage = () => {
     // const { user } = useAuth();
-    const navigate = useNavigate(); 
-    const { data: movies, error, loading, refetchData } = useFetchData('http://localhost:8080/movies');
+    const navigate = useNavigate();
+    const [title, setTitle] = useState('');
+    const { data: movies, error, loading, refetchData, setUrl } = useFetchData('http://localhost:8080/movies');
+
+    const handleMovieNameChange = (e) => {
+        setTitle(e.target.value)
+    }
+
+    const search = () => {
+        if (title === "") {
+            setUrl('http://localhost:8080/movies');
+        }
+        else {
+            setUrl('http://localhost:8080/movies/search/' + title);
+        }
+    }
 
     if (loading) {
         return <Loading />;
     }
 
     if (error) {
-        return <Error message={error.message}/>;
+        return <Error message={error.message} />;
     }
 
     return (
         <div className="movies-page">
+            <div className="search-container">
+                <div className="search">
+                    <input type="text" name="search" id="search" placeholder='' onChange={handleMovieNameChange} />
+                    <button onClick={() => search()}>Search</button>
+                </div>
+            </div>
             <div className="movies">
                 {movies && movies.map((movie, index) => (
                     <div className="movie" key={movie.id} onClick={() => navigate('/movieDetails/' + movie.id)}>

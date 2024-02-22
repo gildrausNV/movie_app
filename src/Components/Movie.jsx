@@ -1,5 +1,4 @@
-import './Movie.css';
-import poster from '../Images/inception.jpg';
+import './Style/Movie.css';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 

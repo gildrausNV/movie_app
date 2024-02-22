@@ -60,8 +60,6 @@ function App() {
               <Route path="/movies" element={<MoviesPage />} />
               <Route path="/movieDetails/:movieId" element={<MovieDetailsPage />} />
               <Route path="/user" element={<UserPage />} />
-              {/* <Route path="/edit/:movieId" element={<EditMovie />} /> */}
-              {/* <Route path="/addMovie" element={<EditMovie />} /> */}
               <Route path="/edit/:movieId" element={<MovieForm />} />
               <Route path="/addMovie" element={<MovieForm />} />
             </Routes>

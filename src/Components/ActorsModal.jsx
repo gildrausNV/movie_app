@@ -1,5 +1,5 @@
 import { Box, Modal, Typography } from '@mui/material';
-import './ActorsModal.css';
+import './Style/ActorsModal.css';
 import { FaUser } from 'react-icons/fa';
 import { useState } from 'react';
 import useFetchData from '../customHooks/useFetchData';

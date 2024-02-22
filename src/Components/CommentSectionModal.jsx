@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Modal, Typography, Box } from "@mui/material";
 import { IoIosSend } from "react-icons/io";
-import "./CommentSectionModal.css";
+import "./Style/CommentSectionModal.css";
 import useFetchData from "../customHooks/useFetchData";
 import usePostData from "../customHooks/usePostData";
 import { TiDelete } from "react-icons/ti";

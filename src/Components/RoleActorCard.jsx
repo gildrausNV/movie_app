@@ -1,7 +1,7 @@
 import useFetchData from "../customHooks/useFetchData";
 import Error from "./Error";
 import Loading from "./Loading";
-import './Roles.css';
+import './Style/Roles.css';
 
 const RoleActorCard = ({ role }) => {
     const { data: actor, loading, error } = useFetchData("http://localhost:8080/actors/" + role.actorId);

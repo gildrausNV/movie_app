@@ -3,6 +3,7 @@
 }
 
 .movies {
+    height: 500px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -22,7 +23,7 @@
 }
 
 .movie-paper:hover {
-    border: 1px solid rgb(193, 89, 14);
+    /* border: 1px solid rgb(193, 89, 14); */
     cursor: pointer;
     transition: 0.5s;
     transform: scale(1.05);
@@ -42,15 +43,12 @@
     align-items: center;
     opacity: 0;
     transition: opacity 0.3s ease;
-    /* Center the text horizontally and allow it to span multiple lines */
     text-align: center;
 }
 
 .title {
     margin-bottom: 5px;
-    /* Ensure that the title can span multiple lines */
     white-space: normal;
-    /* Limit the width of the title to prevent it from overflowing */
     max-width: 90%;
 }
 
@@ -62,3 +60,46 @@
 .movie-paper:hover .overlay {
     opacity: 1;
 }
+
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 8px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
+  }
+  
+  .search {
+    width: 600px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  input[type="text"] {
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 10px;
+    background-color: #555; 
+    color: #fff; 
+  }
+  
+  input[type="text"]::placeholder {
+    color: #ccc; 
+  }
+  
+  button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3331ca; 
+    color: #fff; 
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #5866ff; /* Darker green color on hover */
+  }
+  

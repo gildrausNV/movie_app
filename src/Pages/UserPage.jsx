@@ -1,5 +1,4 @@
 import './Style/UserPage.css';
-import icon from './Icons/person.png';
 import { FaUserAlt } from "react-icons/fa";
 import Movie from '../Components/Movie';
 import useFetchData from '../customHooks/useFetchData';
