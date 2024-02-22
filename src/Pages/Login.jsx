@@ -33,9 +33,9 @@ const Login = ({ setToken, setId, setRole }) => {
   useEffect(() => {
     if (response != null) {
       const { token, id, role } = response;
-      setId(id);
-      setToken(token);
-      setRole(role);
+      // setId(id);
+      // setToken(token);
+      // setRole(role);
       localStorage.setItem("id", id);
       localStorage.setItem("token", token);
       localStorage.setItem("role", role);

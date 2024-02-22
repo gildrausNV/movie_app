@@ -3,7 +3,7 @@ import Login from "./Pages/Login";
 import MovieDetailsPage from "./Pages/MovieDetailsPage";
 import MoviesPage from "./Pages/MoviesPage";
 import Register from "./Pages/Register";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
 import { CiLogout } from "react-icons/ci";
 import { MdLocalMovies } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
@@ -54,7 +54,7 @@ function App() {
             </div>
 
             <Routes>
-              <Route path="/" element={<Login />} />
+              <Route path="/" element={<Navigate to="/login" />} />
               <Route path='/login' element={<Login setId={setId} setToken={setToken} setRole={setRole}/>} />
               <Route path="/register" element={<Register />} />
               <Route path="/movies" element={<MoviesPage />} />
