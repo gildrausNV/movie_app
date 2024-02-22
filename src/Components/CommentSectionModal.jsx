@@ -36,7 +36,7 @@ const CommentSectionModal = ({ open, onClose, movieId }) => {
 
   const handleSubmit = async () => {
     if (comment.trim() !== "") {
-      await postData("http://localhost:8080/comments/" + movieId, {
+      await postData("https://movieappbackend-production-422b.up.railway.app/comments/" + movieId, {
         content: comment
       });
       setComment("");
@@ -45,7 +45,7 @@ const CommentSectionModal = ({ open, onClose, movieId }) => {
   };
 
   const handleDelete = async (commentId) => {
-    await deleteData("http://localhost:8080/comments/" + commentId);
+    await deleteData("https://movieappbackend-production-422b.up.railway.app/comments/" + commentId);
     refetchData();
   }
 
