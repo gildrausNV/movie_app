@@ -10,7 +10,7 @@ import Error from './Error';
 const Actor = ({ role }) => {
     // const { user } = useAuth();
 
-    const url = "http://localhost:8080/actors/" + role?.actorId;
+    const url = "https://movieappbackend-production-422b.up.railway.app/actors/" + role?.actorId;
 
     const { data: actor, error, loading, refetchData } = useFetchData(url);
 

@@ -16,7 +16,7 @@ const MovieForm = () => {
 
     const [movie, setMovie] = useState({});
     const [roles, setRoles] = useState([]);
-    const { data, loading, error } = useFetchData("http://localhost:8080/movies/" + movieId);
+    const { data, loading, error } = useFetchData("https://movieappbackend-production-422b.up.railway.app/movies/" + movieId);
     const { response, loading: loadingPut, error: errorPut, updateData } = usePutData();
     const { postResponse, loading: loadingPost, error: errorPost, postData } = usePostData();
 
@@ -27,9 +27,9 @@ const MovieForm = () => {
             };
 
         if (movieId) {
-            await updateData('http://localhost:8080/movies/' + movieId, updatedMovie);
+            await updateData('https://movieappbackend-production-422b.up.railway.app/movies/' + movieId, updatedMovie);
         } else {
-            await postData('http://localhost:8080/movies', updatedMovie);
+            await postData('https://movieappbackend-production-422b.up.railway.app/movies', updatedMovie);
         }
     };
 
@@ -54,7 +54,7 @@ const MovieForm = () => {
         setShowActorsModal(!showActorsModal);
     };
 
-    const { data: actors, loadingActors, errorActors } = useFetchData("http://localhost:8080/actors");
+    const { data: actors, loadingActors, errorActors } = useFetchData("https://movieappbackend-production-422b.up.railway.app/actors");
     const [role, setRole] = useState({});
     const handleRoleInputChange = (e) => {
         const { name, value } = e.target;

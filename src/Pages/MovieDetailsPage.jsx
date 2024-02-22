@@ -24,18 +24,18 @@ const MovieDetailsPage = () => {
     const { movieId } = useParams();
     const [isInMyWatchlist, setIsInMyWatchlist] = useState(false);
 
-    const { data: movie, error, loading, refetchData } = useFetchData('http://localhost:8080/movies/' + movieId);
-    const { data: isInMyWatchlistData, refetchData: refetchWatchlistData } = useFetchData('http://localhost:8080/movies/isInMyWatchlist/' + movieId);
+    const { data: movie, error, loading, refetchData } = useFetchData('https://movieappbackend-production-422b.up.railway.app/movies/' + movieId);
+    const { data: isInMyWatchlistData, refetchData: refetchWatchlistData } = useFetchData('https://movieappbackend-production-422b.up.railway.app/movies/isInMyWatchlist/' + movieId);
     const { postData } = usePostData();
     const { deleteData } = useDeleteData();
 
     const handleAddToWatchlist = async () => {
-        await postData('http://localhost:8080/users/watchlist/' + movieId);
+        await postData('https://movieappbackend-production-422b.up.railway.app/users/watchlist/' + movieId);
         refetchWatchlistData();
     }
 
     const handleRemoveFromWatchlist = async () => {
-        await deleteData('http://localhost:8080/users/watchlist/' + movieId);
+        await deleteData('https://movieappbackend-production-422b.up.railway.app/users/watchlist/' + movieId);
         refetchWatchlistData();
     }
 

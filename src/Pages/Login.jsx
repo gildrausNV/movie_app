@@ -26,7 +26,8 @@ const Login = ({ setToken, setId, setRole }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userData = await postData("http://localhost:8080/auth/login", loginData);
+    const userData = await postData("https://movieappbackend-production-422b.up.railway.app/auth/login", loginData);
+    // const userData = await postData("http://localhost:8080/auth/login", loginData);
   };
 
   useEffect(() => {

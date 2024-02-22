@@ -4,7 +4,7 @@ import Loading from "./Loading";
 import './Style/Roles.css';
 
 const RoleActorCard = ({ role }) => {
-    const { data: actor, loading, error } = useFetchData("http://localhost:8080/actors/" + role.actorId);
+    const { data: actor, loading, error } = useFetchData("https://movieappbackend-production-422b.up.railway.app/actors/" + role.actorId);
 
     if(loading){
         return <Loading />

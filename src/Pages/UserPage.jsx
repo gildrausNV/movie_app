@@ -9,7 +9,7 @@ import Error from '../Components/Error';
 
 const UserPage = () => {
     // const { user } = useAuth();
-    const { data, error, loading, refetchData } = useFetchData("http://localhost:8080/users/watchlist");
+    const { data, error, loading, refetchData } = useFetchData("https://movieappbackend-production-422b.up.railway.app/users/watchlist");
 
     if (loading) {
         return <Loading />;

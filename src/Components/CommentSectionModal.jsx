@@ -14,7 +14,7 @@ const CommentSectionModal = ({ open, onClose, movieId }) => {
   // const { user } = useAuth();
   const [comments, setComments] = useState([]);
   const { data: fetchedComments, getError, getLoading, refetchData } = useFetchData(
-    "http://localhost:8080/comments/movie/" + movieId
+    "https://movieappbackend-production-422b.up.railway.app/comments/movie/" + movieId
   );
 
   const { postData, response } = usePostData();

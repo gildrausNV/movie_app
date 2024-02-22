@@ -33,7 +33,7 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await postData("http://localhost:8080/auth/register", registerData);
+        await postData("https://movieappbackend-production-422b.up.railway.app/auth/register", registerData);
     };
 
     useEffect(() => {

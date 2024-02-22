@@ -12,7 +12,7 @@ const MoviesPage = () => {
     // const { user } = useAuth();
     const navigate = useNavigate();
     const [title, setTitle] = useState('');
-    const { data: movies, error, loading, refetchData, setUrl } = useFetchData('http://localhost:8080/movies');
+    const { data: movies, error, loading, refetchData, setUrl } = useFetchData('https://movieappbackend-production-422b.up.railway.app/movies');
 
     const handleMovieNameChange = (e) => {
         setTitle(e.target.value)
@@ -20,10 +20,10 @@ const MoviesPage = () => {
 
     const search = () => {
         if (title === "") {
-            setUrl('http://localhost:8080/movies');
+            setUrl('https://movieappbackend-production-422b.up.railway.app/movies');
         }
         else {
-            setUrl('http://localhost:8080/movies/search/' + title);
+            setUrl('https://movieappbackend-production-422b.up.railway.app/movies/search/' + title);
         }
     }
 

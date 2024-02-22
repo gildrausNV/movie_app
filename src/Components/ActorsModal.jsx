@@ -26,7 +26,7 @@ const ActorsModal = ({ open, onClose, roles, setRoles }) => {
 
 
     const handleAddActor = async () => {
-        await postData("http://localhost:8080/actors", newActor);
+        await postData("https://movieappbackend-production-422b.up.railway.app/actors", newActor);
         navigate('/movies');
     }
 
