@@ -1,7 +1,7 @@
 .form-container{
     background: rgba(0, 0, 0, 0.5); 
-    width: 1000px;
-    height: 600px;
+    width: 70%;
+    height: 40%;
     border-radius: 10px;
     display: flex;
 }
@@ -10,11 +10,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 400px;
+    width: 80%;
 }
 
 .poster{
-    max-width: 404px;
+    max-width: 80%;
 }
 
 /* .blank{
@@ -23,10 +23,11 @@
 } */
 
 .input-movie-container{
-    width: 600px;
+    width: 100%;
+    /* width: 600px;
     height: 600px;
     margin: 20px;
-    margin-top: 30px;
+    margin-top: 30px; */
 }
 
 .input-container{
@@ -107,4 +108,7 @@ textarea{
 
 .edit-movie-page{
     display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 }

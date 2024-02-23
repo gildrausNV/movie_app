@@ -39,8 +39,12 @@ const MoviesPage = () => {
         <div className="movies-page">
             <div className="search-container">
                 <div className="search">
-                    <input type="text" name="search" id="search" placeholder='' onChange={handleMovieNameChange} />
-                    <button onClick={() => search()}>Search</button>
+                    <div className="input-search-container">
+                        <input type="text" name="search" id="search" placeholder='' onChange={handleMovieNameChange} />
+                    </div>
+                    <div className="button-search-container">
+                        <button onClick={() => search()}>Search</button>
+                    </div>
                 </div>
             </div>
             <div className="movies">

@@ -1,5 +1,6 @@
 .movie-details-page {
-    
+    width: 70%;
+    margin-left: 5%;
 }
 
 .movie-details-container {
@@ -17,8 +18,8 @@
 
 .movie-details-content {
     /* flex: 1; */
-    height: 564px;
-    width: 900px;
+    height: auto;
+    width: 90%;
     color: white;
     background: rgba(0, 0, 0, 0.5);
     padding: 10px;
