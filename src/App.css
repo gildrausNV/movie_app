@@ -90,3 +90,8 @@
   height: 150px;
   border-radius: 100px;
 }
+
+.button-loading{
+  width: 30px;
+  height: 30px;
+}

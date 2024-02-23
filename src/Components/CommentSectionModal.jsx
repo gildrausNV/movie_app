@@ -17,7 +17,7 @@ const CommentSectionModal = ({ open, onClose, movieId }) => {
     "https://movieappbackend-production-422b.up.railway.app/comments/movie/" + movieId
   );
 
-  const { postData, response } = usePostData();
+  const { postData, loading: loadingPost } = usePostData();
 
   const { deleteData } = useDeleteData();
 
@@ -49,7 +49,7 @@ const CommentSectionModal = ({ open, onClose, movieId }) => {
     refetchData();
   }
 
-  if (getLoading) {
+  if (getLoading || loadingPost) {
     return <Loading />;
   }
 

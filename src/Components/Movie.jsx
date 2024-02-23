@@ -4,7 +4,7 @@ import { useAuth } from '../AuthContext';
 
 const Movie = ({ movie }) => {
     const navigate = useNavigate();
-    const { user } = useAuth();
+    // const { user } = useAuth();
 
     return ( 
         <div className="watchlist-movie">

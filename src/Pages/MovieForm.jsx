@@ -5,10 +5,12 @@ import usePutData from '../customHooks/usePutData';
 import usePostData from '../customHooks/usePostData';
 import Loading from '../Components/Loading';
 import Error from '../Components/Error';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import ActorsModal from '../Components/ActorsModal';
 import { TiDeleteOutline } from "react-icons/ti";
 import Roles from '../Components/Roles';
+
+const MemoizedRoles = memo(Roles);
 
 const MovieForm = () => {
     const { movieId } = useParams();
@@ -135,8 +137,8 @@ const MovieForm = () => {
                     </div>
                 </div>
             </form>
-            <Roles roles={roles}/>
-            <ActorsModal open={showActorsModal} onClose={handleToggleActorsModal} roles={roles} setRoles={setRoles} />
+            <MemoizedRoles roles={roles}/>
+            <ActorsModal open={showActorsModal} onClose={handleToggleActorsModal} />
         </div>
     );
 }

@@ -2,10 +2,12 @@ import './Style/UserPage.css';
 import { FaUserAlt } from "react-icons/fa";
 import Movie from '../Components/Movie';
 import useFetchData from '../customHooks/useFetchData';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useAuth } from '../AuthContext';
 import Loading from '../Components/Loading';
 import Error from '../Components/Error';
+
+const MemoizedMovie = memo(Movie);
 
 const UserPage = () => {
     // const { user } = useAuth();
@@ -35,7 +37,7 @@ const UserPage = () => {
                 <h1>My watchlist</h1>
                 <div className="watchlist">
                     {data?.movies?.map((movie) => (
-                        <Movie movie={movie} />
+                        <MemoizedMovie movie={movie} />
                     ))}
                 </div>
             </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useMemo, useState } from 'react';
 import './Style/MovieDetailsPage.css';
 import Actor from '../Components/Actor';
 import { Button, Input } from '@mui/material';
@@ -18,6 +18,8 @@ import Loading from '../Components/Loading';
 import Error from '../Components/Error';
 import { CiEdit } from "react-icons/ci";
 
+const MemoizedActor = memo(Actor);
+
 const MovieDetailsPage = () => {
     const navigate = useNavigate();
     const role = localStorage.getItem('role');
@@ -26,8 +28,8 @@ const MovieDetailsPage = () => {
 
     const { data: movie, error, loading, refetchData } = useFetchData('https://movieappbackend-production-422b.up.railway.app/movies/' + movieId);
     const { data: isInMyWatchlistData, refetchData: refetchWatchlistData } = useFetchData('https://movieappbackend-production-422b.up.railway.app/movies/isInMyWatchlist/' + movieId);
-    const { postData } = usePostData();
-    const { deleteData } = useDeleteData();
+    const { postData, loading: loadingPost, error: errorPost } = usePostData();
+    const { deleteData, loading: loadingDelete, error: errorDelete } = useDeleteData();
 
     const handleAddToWatchlist = async () => {
         await postData('https://movieappbackend-production-422b.up.railway.app/users/watchlist/' + movieId);
@@ -52,7 +54,6 @@ const MovieDetailsPage = () => {
         setShowCommentModal(!showCommentModal);
     };
 
-
     if (loading) {
         return <Loading />;
     }
@@ -73,13 +74,14 @@ const MovieDetailsPage = () => {
                         <p><strong>Release Date:</strong> {movie.releaseDate}</p>
                         <p><strong>Description:</strong> {movie.description}</p>
                         <div className="actors">
-                            {movie?.roles?.map((role, index) => <Actor role={role} key={index} />)}
+                            {movie?.roles?.map((role, index) => <MemoizedActor role={role} key={index} />)}
                         </div>
                         <div className="comment-container">
                             <button className='comment-button' onClick={handleToggleCommentModal}>Show comment section</button>
                             <div className="like-button">
-                                {role === "USER" ? (!isInMyWatchlist ? <MdOutlineRemoveRedEye className='like-icon' onClick={handleAddToWatchlist} />
-                                    : <IoIosEyeOff className='like-icon' onClick={handleRemoveFromWatchlist} />) : <CiEdit className='like-icon' onClick={() => navigate('/edit/' + movie.id)} />}
+                                {!(loadingDelete || loadingPost) ? (role === "USER" ? (!isInMyWatchlist ? <MdOutlineRemoveRedEye className='like-icon' onClick={handleAddToWatchlist} />
+                                    : <IoIosEyeOff className='like-icon' onClick={handleRemoveFromWatchlist} />) : <CiEdit className='like-icon' onClick={() => navigate('/edit/' + movie.id)} />) : 
+                                    <div className="button-loading"><Loading/></div>}
                             </div>
                         </div>
                     </div>

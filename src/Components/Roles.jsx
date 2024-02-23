@@ -1,11 +1,14 @@
+import { memo } from 'react';
 import RoleActorCard from './RoleActorCard';
 import './Style/Roles.css';
+
+const MemoizedRoleActorCard = memo(RoleActorCard);
 
 const Roles = ({ roles }) => {
     return ( 
         <div className="roles">
             {roles && roles?.map((role) => (
-                <RoleActorCard role={role}/>
+                <MemoizedRoleActorCard role={role}/>
             ) )}
         </div>
      );

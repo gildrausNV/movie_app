@@ -44,7 +44,7 @@ const MoviesPage = () => {
                 </div>
             </div>
             <div className="movies">
-                {movies && movies.map((movie, index) => (
+                { movies && movies?.length !== 0 ? (movies && movies.map((movie, index) => (
                     <div className="movie" key={movie.id} onClick={() => navigate('/movieDetails/' + movie.id)}>
                         <Paper className="movie-paper" style={{ backgroundImage: `url(${movie.image})` }}>
                             <div className="overlay">
@@ -53,7 +53,7 @@ const MoviesPage = () => {
                             </div>
                         </Paper>
                     </div>
-                ))}
+                ))) : <Error message={"Sorry, no movies found"}/>}
             </div>
         </div>
     );

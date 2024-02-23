@@ -7,7 +7,7 @@ import usePostData from '../customHooks/usePostData';
 import { useNavigate } from 'react-router-dom';
 import Error from './Error';
 
-const ActorsModal = ({ open, onClose, roles, setRoles }) => {
+const ActorsModal = ({ open, onClose }) => {
     const navigate = useNavigate();
     const { response, loading: loadingPost, error: errorPost, postData } = usePostData();
     const [newActor, setNewActor] = useState({
