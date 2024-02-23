@@ -10,8 +10,9 @@
 }
 
 .movie-details-image img {
-    max-width: 400px;
-    height: 584px;
+    max-width: 100%;
+    /* max-width: 400px;
+    height: 584px; */
     margin-right: 20px;
 
 }

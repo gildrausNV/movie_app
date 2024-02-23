@@ -66,9 +66,9 @@ const MovieDetailsPage = () => {
         <div className="movie-details-page">
             {movie &&
                 <div className="movie-details-container">
-                    {/* <div className="movie-details-image">
+                    <div className="movie-details-image">
                         <img src={movie.image} alt={movie.title} />
-                    </div> */}
+                    </div>
                     <div className="movie-details-content">
                         <h2>{movie.title}</h2>
                         <p><strong>Release Date:</strong> {movie.releaseDate}</p>
