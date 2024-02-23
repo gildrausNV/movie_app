@@ -8,13 +8,14 @@
 .login-form, .register-form {
     background: rgba(0, 0, 0, 0.5); 
     padding: 15px;
-    width: 280px;
+    width: 90%; /* Adjust the width of the form */
+    max-width: 300px; /* Set a maximum width to maintain readability */
     height: auto; 
     border-radius: 10px;
     color: white;
     border: 1px solid #f7f7f7;
     position: absolute;
-    left: 300px;
+    left: 14%;
     top: 50%;
     transform: translateY(-50%);
 }

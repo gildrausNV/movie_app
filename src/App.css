@@ -1,10 +1,8 @@
-/* App.css */
-
 .page {
   height: 100vh;
   background-image: url('./Images/oppenheimer2.jpeg');
-  background-size: 100%;
-  background-position: 5% center;
+  background-size: cover;
+  background-position: center;
   display: flex; 
   justify-content: center; 
   align-items: center; 
@@ -68,6 +66,12 @@
   }
   to {
       transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .page {
+    justify-content: flex-start;
   }
 }
 
