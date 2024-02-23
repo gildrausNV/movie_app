@@ -1,46 +1,53 @@
 .user-page {
     color: white;
-    width: 900px;
-    height: 450px;
+    width: 900px; /* Maintain fixed width on larger screens */
+    height: 450px; /* Maintain fixed height on larger screens */
     display: flex;
     background: rgba(0, 0, 0, 0.5);
     padding: 20px;
     border-radius: 10px;
-}
-
-.user-info {
+  }
+  
+  @media (max-width: 600px) {
+    .user-page {
+      width: 100%; /* Full width on smaller screens */
+      height: auto; /* Allow height to adjust based on content on smaller screens */
+      padding: 10px; /* Decrease padding for smaller screens */
+    }
+  }
+  
+  .user-info {
     width: 180px;
-}
-
-.user-details {
+  }
+  
+  .user-details {
     height: 300px;
-}
-
-/* .user-picture {
-    
-} */
-
-.user-picture {
+  }
+  
+  .user-picture {
     width: 100px;
     height: 100px;
-}
-
-.user-image-container {
+  }
+  
+  .user-image-container {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.user-name{
+  }
+  
+  .user-name {
     display: flex;
     align-items: center;
     justify-content: center;
-}
- .watchlist{
-    margin-left: 10px;
+  }
+  
+  .watchlist-container {
+    flex: 1; /* Allow watchlist container to take remaining space */
+    margin-left: 20px; /* Add some space between user info and watchlist */
+  }
+  
+  .watchlist {
     display: flex;
-}
-
-/*.watchlist-container{
-    
-} */
+    flex-wrap: wrap; /* Allow movies to wrap to the next line */
+    justify-content: flex-start; /* Align movies to the start */
+  }

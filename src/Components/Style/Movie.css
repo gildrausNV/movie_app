@@ -3,13 +3,14 @@
 }
 
 .watchlist-movie {
+    width: 100px; /* Adjust movie width for smaller screens */
+    height: auto; /* Allow movie height to adjust based on content */
     margin: 10px;
-    height: 150px;
     border: 1px solid transparent;
     transition: transform 0.3s ease; 
-}
-
-.watchlist-movie:hover {
+  }
+  
+  .watchlist-movie:hover {
     cursor: pointer;
     transform: scale(1.05); 
-}
+  }
