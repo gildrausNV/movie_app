@@ -5,7 +5,6 @@ import { Button, Input } from '@mui/material';
 import { GrLike } from "react-icons/gr";
 import { GrDislike } from "react-icons/gr";
 import { FaHeart } from "react-icons/fa";
-import CommentSectionModal from '../Components/CommentSectionModal';
 import { CiCircleRemove } from "react-icons/ci";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { IoIosEyeOff } from "react-icons/io";
@@ -17,6 +16,7 @@ import { useAuth } from '../AuthContext';
 import Loading from '../Components/Loading';
 import Error from '../Components/Error';
 import { CiEdit } from "react-icons/ci";
+import ReviewModal from '../Components/ReviewModal';
 
 const MemoizedActor = memo(Actor);
 
@@ -48,10 +48,10 @@ const MovieDetailsPage = () => {
     }, [isInMyWatchlistData]);
 
 
-    const [showCommentModal, setShowCommentModal] = useState(false);
+    const [showReviewModal, setShowReviewModal] = useState(false);
 
-    const handleToggleCommentModal = () => {
-        setShowCommentModal(!showCommentModal);
+    const handleToggleReviewModal = () => {
+        setShowReviewModal(!showReviewModal);
     };
 
     if (loading) {
@@ -77,17 +77,16 @@ const MovieDetailsPage = () => {
                             {movie?.roles?.map((role, index) => <MemoizedActor role={role} key={index} />)}
                         </div>
                         <div className="comment-container">
-                            <button className='comment-button' onClick={handleToggleCommentModal}>Show comment section</button>
+                            <button className='comment-button' onClick={handleToggleReviewModal}>Show reviews</button>
                             <div className="like-button">
                                 {!(loadingDelete || loadingPost) ? (role === "USER" ? (!isInMyWatchlist ? <MdOutlineRemoveRedEye className='like-icon' onClick={handleAddToWatchlist} />
-                                    : <IoIosEyeOff className='like-icon' onClick={handleRemoveFromWatchlist} />) : <CiEdit className='like-icon' onClick={() => navigate('/edit/' + movie.id)} />) : 
-                                    <div className="button-loading"><Loading/></div>}
+                                    : <IoIosEyeOff className='like-icon' onClick={handleRemoveFromWatchlist} />) : <CiEdit className='like-icon' onClick={() => navigate('/edit/' + movie.id)} />) :
+                                    <div className="button-loading"><Loading /></div>}
                             </div>
                         </div>
                     </div>
                 </div>}
-
-            <CommentSectionModal open={showCommentModal} onClose={handleToggleCommentModal} movieId={movieId} />
+            <ReviewModal open={showReviewModal} onClose={handleToggleReviewModal} movieId={movieId} />
         </div>
     );
 }
