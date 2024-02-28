@@ -8,6 +8,7 @@ const useFetchPaginationData = (initialUrl, initialParams) => {
   const [url, setUrl] = useState(initialUrl);
   const [params, setParams] = useState(initialParams);
   const [cancelToken, setCancelToken] = useState(null);
+  const [totalPages, setTotalPages] = useState();
 
   const fetchData = async () => {
     setLoading(true);
@@ -18,6 +19,7 @@ const useFetchPaginationData = (initialUrl, initialParams) => {
       setCancelToken(source);
       const response = await axios.get(url, { params, headers, cancelToken: source.token });
       setData(response.data.content);
+      setTotalPages(response.data.totalPages);
     } catch (error) {
       if (!axios.isCancel(error)) {
         setError(error);
@@ -47,7 +49,7 @@ const useFetchPaginationData = (initialUrl, initialParams) => {
     fetchData();
   };
 
-  return { data, loading, error, refetchData, setUrl, updateParams };
+  return { data, loading, error, refetchData, setUrl, updateParams, totalPages };
 };
 
 export default useFetchPaginationData;
