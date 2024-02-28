@@ -5,8 +5,10 @@ import { GrPrevious, GrNext } from "react-icons/gr";
 import Loading from '../Components/Loading';
 import Error from '../Components/Error';
 import { FaUser } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const ActorsPage = () => {
+    const navigate = useNavigate();
     const [page, setPage] = useState(0);
     const pageSize = 6;
     const { data: actors, totalPages, loading, error, updateParams } = useFetchPaginationData("https://movieappbackend-production-422b.up.railway.app/actors", { size: pageSize, page: page });
@@ -43,7 +45,7 @@ const ActorsPage = () => {
             <div className="actors-page">
 
                 {actors && actors.map((actor) => (
-                    <div className="actor" key={actor.id}>
+                    <div className="actor-actor-page" onClick={() => navigate('/actorDetails/' + actor.id)} key={actor.id}>
                         {actor.image ? <img src={actor.image} alt="" className='actor-card' /> : <FaUser className='actor-card'/>}
                         <div className="info">
                             {actor.firstName} {actor.lastName}
