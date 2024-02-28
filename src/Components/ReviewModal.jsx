@@ -1,6 +1,6 @@
 import { Modal, Rating } from '@mui/material';
 import './Style/ReviewModal.css';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { IoIosSend } from 'react-icons/io';
 import useFetchData from '../customHooks/useFetchData';
 import usePostData from '../customHooks/usePostData';
@@ -11,11 +11,16 @@ import { TiDelete } from 'react-icons/ti';
 
 const ReviewModal = ({ open, onClose, movieId }) => {
     const { data: reviews, loading, error, refetchData } = useFetchData("https://movieappbackend-production-422b.up.railway.app/reviews/" + movieId);
+    const { data: averateRating } = useFetchData("https://movieappbackend-production-422b.up.railway.app/reviews/rating/" + movieId);
     const { postData } = usePostData();
     const { deleteData } = useDeleteData();
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState("");
     const inputRef = useRef(null);
+
+    useEffect(() => {
+        setRating(averateRating);
+    }, [averateRating])
 
     const handleCommentChange = () => {
         setComment(inputRef.current.innerText);

@@ -6,6 +6,7 @@ import Loading from '../Components/Loading';
 import Error from '../Components/Error';
 import useFetchPaginationData from '../customHooks/useFetchPaginationData';
 import { GrPrevious, GrNext } from "react-icons/gr";
+import MoviePaper from '../Components/MoviePaper';
 
 const MoviesPage = () => {
     const navigate = useNavigate();
@@ -70,14 +71,15 @@ const MoviesPage = () => {
                     <GrPrevious className='pagination-button' onClick={handlePrevPage}/>
                 </div>
                 {movies && movies?.length !== 0 ? (movies && movies.map((movie, index) => (
-                    <div className="movie" key={movie.id} onClick={() => navigate('/movieDetails/' + movie.id)}>
-                        <Paper className="movie-paper" style={{ backgroundImage: `url(${movie.image})` }}>
-                            <div className="overlay">
-                                <h2 className="title">{movie.title}</h2>
-                                <p className="release-date">{movie.releaseDate}</p>
-                            </div>
-                        </Paper>
-                    </div>
+                    <MoviePaper movie={movie} key={movie.id}/>
+                    // <div className="movie" key={movie.id} onClick={() => navigate('/movieDetails/' + movie.id)}>
+                    //     <Paper className="movie-paper" style={{ backgroundImage: `url(${movie.image})` }}>
+                    //         <div className="overlay">
+                    //             <h2 className="title">{movie.title}</h2>
+                    //             <p className="release-date">{movie.releaseDate}</p>
+                    //         </div>
+                    //     </Paper>
+                    // </div>
                 ))) : <Error message={"Sorry, no movies found"} />}
                 <div className="pagination">
                     <GrNext className='pagination-button' onClick={handleNextPage}/>

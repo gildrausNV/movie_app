@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useMemo, useState } from 'react';
 import './Style/MovieDetailsPage.css';
 import Actor from '../Components/Actor';
-import { Button, Input } from '@mui/material';
+import { Button, Input, Rating } from '@mui/material';
 import { GrLike } from "react-icons/gr";
 import { GrDislike } from "react-icons/gr";
 import { FaHeart } from "react-icons/fa";
@@ -27,6 +27,7 @@ const MovieDetailsPage = () => {
     const { movieId } = useParams();
     const [isInMyWatchlist, setIsInMyWatchlist] = useState(false);
 
+    const { data: averateRating } = useFetchData("https://movieappbackend-production-422b.up.railway.app/reviews/rating/" + movieId);
     const { data: movie, error, loading, refetchData } = useFetchData("https://movieappbackend-production-422b.up.railway.app/movies/" + movieId);
     const { data: isInMyWatchlistData, refetchData: refetchWatchlistData } = useFetchData('https://movieappbackend-production-422b.up.railway.app/movies/isInMyWatchlist/' + movieId);
     const { postData, loading: loadingPost, error: errorPost } = usePostData();
@@ -71,7 +72,15 @@ const MovieDetailsPage = () => {
                         <img src={movie.image} alt={movie.title} />
                     </div>
                     <div className="movie-details-content">
-                        <h2>{movie.title}</h2>
+                        <div className="movie-details-header">
+                            <h2>{movie.title}</h2>
+                            <Rating
+                                name="simple-controlled"
+                                value={averateRating}
+                                readOnly
+                            />
+                        </div>
+
                         <p><strong>Release Date:</strong> {movie.releaseDate}</p>
                         <p><strong>Description:</strong> {movie.description}</p>
                         <div className="actors">
