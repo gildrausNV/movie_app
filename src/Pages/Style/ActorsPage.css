@@ -1,0 +1,39 @@
+.actor {
+    display: flex;
+    align-items: center; 
+    margin: 20px; 
+    width: 32%;
+    padding: 5px;
+}
+
+.info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* height: 100%; */
+    margin: 20px;
+}
+
+.actor-card {
+    width: 100%;
+    height: auto;
+}
+
+.actor:hover{
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.actors-page{
+    width: 50%;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.pagination-button{
+    width: 25px;
+    height: 25px;
+}

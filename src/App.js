@@ -11,7 +11,9 @@ import UserPage from "./Pages/UserPage";
 import { useContext, useEffect, useState } from "react";
 import { AuthProvider, useAuth } from './AuthContext';
 import { MdAddToPhotos } from "react-icons/md";
+import { MdRecentActors } from "react-icons/md";
 import MovieForm from "./Pages/MovieForm";
+import ActorsPage from "./Pages/ActorsPage";
 
 function App() {
   const { user, setUser } = useAuth();
@@ -50,6 +52,9 @@ function App() {
                 </Link>: <Link to={"/addMovie"}>
                   <MdAddToPhotos  className="menu-icon" />
                 </Link>}
+                <Link to={"/actors"}>
+                  <MdRecentActors className="menu-icon" />
+                </Link>
               </>}
             </div>
 
@@ -62,6 +67,7 @@ function App() {
               <Route path="/user" element={<UserPage />} />
               <Route path="/edit/:movieId" element={<MovieForm />} />
               <Route path="/addMovie" element={<MovieForm />} />
+              <Route path="/actors" element={<ActorsPage />} />
             </Routes>
 
             <Link to={"/login"}>
