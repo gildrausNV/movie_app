@@ -63,13 +63,10 @@ const MoviesPage = () => {
         <div className="movies-page">
             <div className="search-container">
                 <div className="search">
-                    <div className="input-search-container">
                         <input type="text" name="search" id="search" placeholder='' onChange={handleMovieNameChange} />
-                    </div>
-                    <div className="input-container">
-                        <label htmlFor="">Genre:</label>
+                        <div className="search-genre">
                         <select className="actor-select" onChange={handleGenreSelectChange}>
-                            <option value="">Select an actor</option>
+                            <option value="">Select a genre</option>
                             <option value='SCIENCE_FICTION'>Science fiction</option>
                             <option value='ACTION'>Action</option>
                             <option value='COMEDY'>Comedy</option>
@@ -79,10 +76,9 @@ const MoviesPage = () => {
                             <option value='THRILLER'>Thriller</option>
                             <option value='WESTERN'>Western</option>
                         </select>
-                    </div>
-                    <div className="button-search-container">
-                        <button onClick={() => search()}>Search</button>
-                    </div>
+                        </div>
+                        
+                        <button className='search-button' onClick={() => search()}>Search</button>
                 </div>
             </div>
 
