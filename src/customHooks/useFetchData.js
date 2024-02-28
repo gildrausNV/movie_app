@@ -6,24 +6,34 @@ const useFetchData = (initialUrl) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(initialUrl);
+  const [cancelToken, setCancelToken] = useState(null);
 
   const fetchData = async () => {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
       const headers = token ? { Authorization: `Bearer ${token}` } : {};
-      const response = await axios.get(url, headers);
+      const source = axios.CancelToken.source();
+      setCancelToken(source);
+      const response = await axios.get(url, { headers, cancelToken: source.token });
       setData(response.data);
-      // console.log(response);
     } catch (error) {
-      setError(error);
+      if (!axios.isCancel(error)) {
+        setError(error);
+      }
     }
     setLoading(false);
   };
 
   useEffect(() => {
     fetchData();
+    return () => {
+      if (cancelToken) {
+        cancelToken.cancel("Request canceled by cleanup");
+      }
+    };
   }, [url]);
+
 
   const refetchData = () => {
     fetchData();

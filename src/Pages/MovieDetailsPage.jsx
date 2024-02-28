@@ -17,6 +17,7 @@ import Loading from '../Components/Loading';
 import Error from '../Components/Error';
 import { CiEdit } from "react-icons/ci";
 import ReviewModal from '../Components/ReviewModal';
+import useFetchPaginationData from '../customHooks/useFetchPaginationData';
 
 const MemoizedActor = memo(Actor);
 
@@ -26,7 +27,7 @@ const MovieDetailsPage = () => {
     const { movieId } = useParams();
     const [isInMyWatchlist, setIsInMyWatchlist] = useState(false);
 
-    const { data: movie, error, loading, refetchData } = useFetchData('https://movieappbackend-production-422b.up.railway.app/movies/' + movieId);
+    const { data: movie, error, loading, refetchData } = useFetchData("https://movieappbackend-production-422b.up.railway.app/movies/" + movieId);
     const { data: isInMyWatchlistData, refetchData: refetchWatchlistData } = useFetchData('https://movieappbackend-production-422b.up.railway.app/movies/isInMyWatchlist/' + movieId);
     const { postData, loading: loadingPost, error: errorPost } = usePostData();
     const { deleteData, loading: loadingDelete, error: errorDelete } = useDeleteData();

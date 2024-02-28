@@ -13,7 +13,7 @@ const MoviesPage = () => {
     const [page, setPage] = useState(0);
     const pageSize = 2;
 
-    const { data: movies, error, loading, refetchData, updateParams, setUrl } = useFetchPaginationData('https://movieappbackend-production-422b.up.railway.app/movies', { size: pageSize, page });
+    const { data: movies, error, loading, refetchData, updateParams, setUrl } = useFetchPaginationData('http://localhost:8080/movies', { size: pageSize, page });
 
     const handleMovieNameChange = (e) => {
         setTitle(e.target.value)
