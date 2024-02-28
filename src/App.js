@@ -16,6 +16,7 @@ import MovieForm from "./Pages/MovieForm";
 import ActorsPage from "./Pages/ActorsPage";
 import ActorDetailsPage from "./Pages/ActorDetailsPage";
 import ActorForm from "./Pages/ActorForm";
+import { GrUserNew } from "react-icons/gr";
 
 function App() {
   const { user, setUser } = useAuth();
@@ -57,6 +58,9 @@ function App() {
                 <Link to={"/actors"}>
                   <MdRecentActors className="menu-icon" />
                 </Link>
+                {role === "ADMIN" && <Link to={"/newActor"}>
+                  <GrUserNew className="menu-icon" />
+                </Link>}
               </>}
             </div>
 
@@ -72,7 +76,7 @@ function App() {
               <Route path="/actors" element={<ActorsPage />} />
               <Route path="/actorDetails/:actorId" element={<ActorDetailsPage />} />
               <Route path="/editActor/:actorId" element={<ActorForm />} />
-              <Route path="/editActor" element={<ActorForm />} />
+              <Route path="/newActor" element={<ActorForm />} />
             </Routes>
 
             <Link to={"/login"}>

@@ -11,7 +11,7 @@ const MoviesPage = () => {
     const navigate = useNavigate();
     const [title, setTitle] = useState('');
     const [page, setPage] = useState(0);
-    const pageSize = 2;
+    const pageSize = 4;
 
     const { data: movies, error, loading, totalPages, updateParams, setUrl } = useFetchPaginationData('https://movieappbackend-production-422b.up.railway.app/movies', { size: pageSize, page });
 

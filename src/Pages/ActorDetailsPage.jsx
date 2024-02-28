@@ -11,6 +11,7 @@ const ActorDetailsPage = () => {
     const { actorId } = useParams();
     const { data: actor, loading, error } = useFetchData("https://movieappbackend-production-422b.up.railway.app/actors/" + actorId);
     const { data: actorMovies, loading: loadingMovies, error: errorMovies } = useFetchData("https://movieappbackend-production-422b.up.railway.app/actors/movies/" + actorId);
+    const role = localStorage.getItem("role");
 
     if (loading) {
         return <Loading />
@@ -55,7 +56,7 @@ const ActorDetailsPage = () => {
                     </div>
                 </div>
                 <div className="edit-button">
-                    <CiEdit className='like-icon' onClick={() => navigate('/editActor/' + actor.id)} />
+                    { role === "ADMIN" && <CiEdit className='like-icon' onClick={() => navigate('/editActor/' + actor.id)} />}
                 </div>
             </div>
             <div className="actor-movies">
