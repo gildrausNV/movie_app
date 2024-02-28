@@ -15,6 +15,7 @@ import { MdRecentActors } from "react-icons/md";
 import MovieForm from "./Pages/MovieForm";
 import ActorsPage from "./Pages/ActorsPage";
 import ActorDetailsPage from "./Pages/ActorDetailsPage";
+import ActorForm from "./Pages/ActorForm";
 
 function App() {
   const { user, setUser } = useAuth();
@@ -66,10 +67,12 @@ function App() {
               <Route path="/movies" element={<MoviesPage />} />
               <Route path="/movieDetails/:movieId" element={<MovieDetailsPage />} />
               <Route path="/user" element={<UserPage />} />
-              <Route path="/edit/:movieId" element={<MovieForm />} />
+              <Route path="/editMovie/:movieId" element={<MovieForm />} />
               <Route path="/addMovie" element={<MovieForm />} />
               <Route path="/actors" element={<ActorsPage />} />
               <Route path="/actorDetails/:actorId" element={<ActorDetailsPage />} />
+              <Route path="/editActor/:actorId" element={<ActorForm />} />
+              <Route path="/editActor" element={<ActorForm />} />
             </Routes>
 
             <Link to={"/login"}>

@@ -1,0 +1,35 @@
+.edit-actor-page{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.image-container{
+    width: 30%;
+}
+
+.actor-image{
+    width: 100%;
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.input-actor-container{
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-container{
+    width: 97%;
+    display: flex;
+    align-items: center;
+}
+
+.input-container-image{
+    width: 100%;
+    display: flex;
+    max-height: 200px;
+}

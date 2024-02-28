@@ -19,7 +19,7 @@
     height: auto;
 }
 
-.actor:hover{
+.actor-actor-page:hover{
     background-color: rgba(0, 0, 0, 0.5);
     transition: 0.5s;
     cursor: pointer;

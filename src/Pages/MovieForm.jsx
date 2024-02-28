@@ -139,7 +139,7 @@ const MovieForm = () => {
                 </div>
             </form>
             <MemoizedRoles roles={roles}/>
-            {/* <ActorsModal open={showActorsModal} onClose={handleToggleActorsModal} /> */}
+            <ActorsModal open={showActorsModal} onClose={handleToggleActorsModal} />
         </div>
     );
 }

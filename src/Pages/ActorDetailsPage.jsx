@@ -4,6 +4,7 @@ import useFetchData from '../customHooks/useFetchData';
 import { FaUser } from 'react-icons/fa';
 import Loading from '../Components/Loading';
 import Error from '../Components/Error';
+import { CiEdit } from "react-icons/ci";
 
 const ActorDetailsPage = () => {
     const navigate = useNavigate();
@@ -53,6 +54,9 @@ const ActorDetailsPage = () => {
                         <div>https://www.imdb.com/name/nm0000138/</div>
                     </div>
                 </div>
+                <div className="edit-button">
+                    <CiEdit className='like-icon' onClick={() => navigate('/editActor/' + actor.id)} />
+                </div>
             </div>
             <div className="actor-movies">
                 {actorMovies && actorMovies?.map((movie) => (
@@ -70,7 +74,6 @@ const ActorDetailsPage = () => {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 ))}
             </div>

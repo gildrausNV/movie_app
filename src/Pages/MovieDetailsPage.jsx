@@ -81,7 +81,7 @@ const MovieDetailsPage = () => {
                             <button className='comment-button' onClick={handleToggleReviewModal}>Show reviews</button>
                             <div className="like-button">
                                 {!(loadingDelete || loadingPost) ? (role === "USER" ? (!isInMyWatchlist ? <MdOutlineRemoveRedEye className='like-icon' onClick={handleAddToWatchlist} />
-                                    : <IoIosEyeOff className='like-icon' onClick={handleRemoveFromWatchlist} />) : <CiEdit className='like-icon' onClick={() => navigate('/edit/' + movie.id)} />) :
+                                    : <IoIosEyeOff className='like-icon' onClick={handleRemoveFromWatchlist} />) : <CiEdit className='like-icon' onClick={() => navigate('/editMovie/' + movie.id)} />) :
                                     <div className="button-loading"><Loading /></div>}
                             </div>
                         </div>
