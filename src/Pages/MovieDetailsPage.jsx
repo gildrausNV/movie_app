@@ -80,7 +80,7 @@ const MovieDetailsPage = () => {
                                 readOnly
                             />
                         </div>
-
+                        <p><strong>Genre:</strong> {movie?.genre}</p>
                         <p><strong>Release Date:</strong> {movie.releaseDate}</p>
                         <p><strong>Description:</strong> {movie.description}</p>
                         <div className="actors">

@@ -43,6 +43,12 @@ const MoviesPage = () => {
         else {
             setUrl('https://movieappbackend-production-422b.up.railway.app/movies/search/' + title);
         }
+        setPage(0);
+    }
+
+    const handleGenreSelectChange = (e) => {
+        setUrl('https://movieappbackend-production-422b.up.railway.app/movies/genre/' + e.target.value);
+        setPage(0);
     }
 
     if (loading) {
@@ -60,6 +66,20 @@ const MoviesPage = () => {
                     <div className="input-search-container">
                         <input type="text" name="search" id="search" placeholder='' onChange={handleMovieNameChange} />
                     </div>
+                    <div className="input-container">
+                        <label htmlFor="">Genre:</label>
+                        <select className="actor-select" onChange={handleGenreSelectChange}>
+                            <option value="">Select an actor</option>
+                            <option value='SCIENCE_FICTION'>Science fiction</option>
+                            <option value='ACTION'>Action</option>
+                            <option value='COMEDY'>Comedy</option>
+                            <option value='DRAMA'>Drama</option>
+                            <option value='ROMANCE'>Romance</option>
+                            <option value='HORROR'>Horror</option>
+                            <option value='THRILLER'>Thriller</option>
+                            <option value='WESTERN'>Western</option>
+                        </select>
+                    </div>
                     <div className="button-search-container">
                         <button onClick={() => search()}>Search</button>
                     </div>
@@ -72,14 +92,6 @@ const MoviesPage = () => {
                 </div>
                 {movies && movies?.length !== 0 ? (movies && movies.map((movie, index) => (
                     <MoviePaper movie={movie} key={movie.id}/>
-                    // <div className="movie" key={movie.id} onClick={() => navigate('/movieDetails/' + movie.id)}>
-                    //     <Paper className="movie-paper" style={{ backgroundImage: `url(${movie.image})` }}>
-                    //         <div className="overlay">
-                    //             <h2 className="title">{movie.title}</h2>
-                    //             <p className="release-date">{movie.releaseDate}</p>
-                    //         </div>
-                    //     </Paper>
-                    // </div>
                 ))) : <Error message={"Sorry, no movies found"} />}
                 <div className="pagination">
                     <GrNext className='pagination-button' onClick={handleNextPage}/>

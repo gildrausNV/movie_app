@@ -6,7 +6,6 @@ import usePostData from '../customHooks/usePostData';
 import Loading from '../Components/Loading';
 import Error from '../Components/Error';
 import { memo, useEffect, useState } from 'react';
-import ActorsModal from '../Components/ActorsModal';
 import { TiDeleteOutline } from "react-icons/ti";
 import Roles from '../Components/Roles';
 import useFetchPaginationData from '../customHooks/useFetchPaginationData';
@@ -27,6 +26,7 @@ const MovieForm = () => {
         const updatedMovie = {
                 ...movie,
                 roles: roles,
+                genre: genre
             };
 
         if (movieId) {
@@ -34,6 +34,7 @@ const MovieForm = () => {
         } else {
             await postData('https://movieappbackend-production-422b.up.railway.app/movies', updatedMovie);
         }
+        navigate('/movieDetails/' + movieId);
     };
 
     useEffect(() => {
@@ -50,12 +51,6 @@ const MovieForm = () => {
             [name]: value
         }))
     }
-
-    const [showActorsModal, setShowActorsModal] = useState(false);
-
-    const handleToggleActorsModal = () => {
-        setShowActorsModal(!showActorsModal);
-    };
 
     const { data: actors, loadingActors, errorActors } = useFetchPaginationData("https://movieappbackend-production-422b.up.railway.app/actors", null);
     const [role, setRole] = useState({});
@@ -74,6 +69,12 @@ const MovieForm = () => {
             actorId: actorId
         }));
     };
+
+    const [genre, setGenre] = useState();
+    const handleGenreSelectChange = (e) => {
+        setGenre(e.target.value);
+    };
+
 
     const handleAddRole = async () => {
         if(roles && roles.length > 0){
@@ -112,6 +113,20 @@ const MovieForm = () => {
                         <textarea type="text" name='description' value={movie?.description} onChange={handleChange} />
                     </div>
                     <div className="input-container">
+                        <label htmlFor="">Genre:</label>
+                        <select className="actor-select" onChange={handleGenreSelectChange}>
+                            <option value="">Select an actor</option>
+                            <option value='SCIENCE_FICTION'>Science fiction</option>
+                            <option value='ACTION'>Action</option>
+                            <option value='COMEDY'>Comedy</option>
+                            <option value='DRAMA'>Drama</option>
+                            <option value='ROMANCE'>Romance</option>
+                            <option value='HORROR'>Horror</option>
+                            <option value='THRILLER'>Thriller</option>
+                            <option value='WESTERN'>Western</option>
+                        </select>
+                    </div>
+                    <div className="input-container">
                         <label htmlFor="">Poster:</label>
                         <input type="text" name='image' value={movie?.image} onChange={handleChange} />
                     </div>
@@ -133,13 +148,11 @@ const MovieForm = () => {
                     </div>
 
                     <div className="button-container">
-                        <button className='actors-modal' type="button" onClick={handleToggleActorsModal}>Create new actor</button>
                         <button type='button' onClick={() => handleSubmit()}>Save changes</button>
                     </div>
                 </div>
             </form>
             <MemoizedRoles roles={roles}/>
-            <ActorsModal open={showActorsModal} onClose={handleToggleActorsModal} />
         </div>
     );
 }
