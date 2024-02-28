@@ -9,6 +9,7 @@ import { memo, useEffect, useState } from 'react';
 import ActorsModal from '../Components/ActorsModal';
 import { TiDeleteOutline } from "react-icons/ti";
 import Roles from '../Components/Roles';
+import useFetchPaginationData from '../customHooks/useFetchPaginationData';
 
 const MemoizedRoles = memo(Roles);
 
@@ -56,7 +57,7 @@ const MovieForm = () => {
         setShowActorsModal(!showActorsModal);
     };
 
-    const { data: actors, loadingActors, errorActors } = useFetchData("https://movieappbackend-production-422b.up.railway.app/actors");
+    const { data: actors, loadingActors, errorActors } = useFetchPaginationData("https://movieappbackend-production-422b.up.railway.app/actors", null);
     const [role, setRole] = useState({});
     const handleRoleInputChange = (e) => {
         const { name, value } = e.target;
@@ -117,7 +118,7 @@ const MovieForm = () => {
                     <div className="input-container">
                         <select className="actor-select" onChange={handleActorSelectChange}>
                             <option value="">Select an actor</option>
-                            {actors?.map((actor, index) => (
+                            {actors && actors?.map((actor, index) => (
                                 <option key={index} value={actor.id}>
                                     {actor.firstName} {actor.lastName}
                                 </option>
