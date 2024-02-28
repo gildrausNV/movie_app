@@ -12,7 +12,7 @@ const useFetchData = (initialUrl) => {
     try {
       const token = localStorage.getItem("token");
       const headers = token ? { Authorization: `Bearer ${token}` } : {};
-      const response = await axios.get(url, { headers });
+      const response = await axios.get(url, headers);
       setData(response.data);
       // console.log(response);
     } catch (error) {

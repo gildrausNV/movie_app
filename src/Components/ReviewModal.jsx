@@ -95,7 +95,6 @@ const ReviewModal = ({ open, onClose, movieId }) => {
                     </div>
                 </div>
             </div>
-
         </Modal>
 
     );

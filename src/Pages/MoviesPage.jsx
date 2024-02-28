@@ -1,22 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Style/MoviesPage.css';
 import { Paper } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import useFetchData from '../customHooks/useFetchData';
-import { useAuth } from '../AuthContext';
 import Loading from '../Components/Loading';
 import Error from '../Components/Error';
-import { Search } from '@mui/icons-material';
+import useFetchPaginationData from '../customHooks/useFetchPaginationData';
+import { GrPrevious, GrNext } from "react-icons/gr";
 
 const MoviesPage = () => {
-    // const { user } = useAuth();
     const navigate = useNavigate();
     const [title, setTitle] = useState('');
-    const { data: movies, error, loading, refetchData, setUrl } = useFetchData('https://movieappbackend-production-422b.up.railway.app/movies');
+    const [page, setPage] = useState(0);
+    const pageSize = 2;
+
+    const { data: movies, error, loading, refetchData, updateParams, setUrl } = useFetchPaginationData('https://movieappbackend-production-422b.up.railway.app/movies', { size: pageSize, page });
 
     const handleMovieNameChange = (e) => {
         setTitle(e.target.value)
     }
+
+    const handleNextPage = () => {
+        setPage(currentPage => currentPage + 1);
+    }
+
+    const handlePrevPage = () => {
+        if (page > 0) {
+            setPage(currentPage => currentPage - 1);
+        }
+    }
+
+    useEffect(() => {
+        updateParams({ size: pageSize, page });
+    }, [page])
 
     const search = () => {
         if (title === "") {
@@ -47,8 +62,12 @@ const MoviesPage = () => {
                     </div>
                 </div>
             </div>
+
             <div className="movies">
-                { movies && movies?.length !== 0 ? (movies && movies.map((movie, index) => (
+                <div className="pagination">
+                    <GrPrevious className='pagination-button' onClick={handlePrevPage}/>
+                </div>
+                {movies && movies?.length !== 0 ? (movies && movies.map((movie, index) => (
                     <div className="movie" key={movie.id} onClick={() => navigate('/movieDetails/' + movie.id)}>
                         <Paper className="movie-paper" style={{ backgroundImage: `url(${movie.image})` }}>
                             <div className="overlay">
@@ -57,7 +76,10 @@ const MoviesPage = () => {
                             </div>
                         </Paper>
                     </div>
-                ))) : <Error message={"Sorry, no movies found"}/>}
+                ))) : <Error message={"Sorry, no movies found"} />}
+                <div className="pagination">
+                    <GrNext className='pagination-button' onClick={handleNextPage}/>
+                </div>
             </div>
         </div>
     );
