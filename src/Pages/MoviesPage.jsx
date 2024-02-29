@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import './Style/MoviesPage.css';
 import { Paper } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -7,6 +7,8 @@ import Error from '../Components/Error';
 import useFetchPaginationData from '../customHooks/useFetchPaginationData';
 import { GrPrevious, GrNext } from "react-icons/gr";
 import MoviePaper from '../Components/MoviePaper';
+
+const MemoizedMoviePaper = memo(MoviePaper);
 
 const MoviesPage = () => {
     const navigate = useNavigate();
@@ -92,7 +94,7 @@ const MoviesPage = () => {
                     <GrPrevious className='pagination-button' onClick={handlePrevPage} />
                 </div>
                 {movies && movies?.length !== 0 ? (movies && movies.map((movie, index) => (
-                    <MoviePaper movie={movie} key={movie.id} />
+                    <MemoizedMoviePaper movie={movie} key={movie.id} />
                 ))) : <Error message={"Sorry, no movies found"} />}
                 <div className="pagination">
                     <GrNext className='pagination-button' onClick={handleNextPage} />
