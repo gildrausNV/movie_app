@@ -26,6 +26,8 @@
 
 .reviews{
     margin: 10px;
+    max-height: 400px;
+    overflow-y: auto;
 }
 
 .review-rating{

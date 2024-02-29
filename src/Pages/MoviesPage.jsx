@@ -21,7 +21,7 @@ const MoviesPage = () => {
     }
 
     const handleNextPage = () => {
-        if(page + 1 < totalPages){
+        if (page + 1 < totalPages) {
             setPage(currentPage => currentPage + 1);
         }
     }
@@ -62,35 +62,40 @@ const MoviesPage = () => {
     return (
         <div className="movies-page">
             <div className="search-container">
-                <div className="search">
-                        <input type="text" name="search" id="search" placeholder='' onChange={handleMovieNameChange} />
-                        <div className="search-genre">
-                        <select className="actor-select" onChange={handleGenreSelectChange}>
-                            <option value="">Select a genre</option>
-                            <option value='SCIENCE_FICTION'>Science fiction</option>
-                            <option value='ACTION'>Action</option>
-                            <option value='COMEDY'>Comedy</option>
-                            <option value='DRAMA'>Drama</option>
-                            <option value='ROMANCE'>Romance</option>
-                            <option value='HORROR'>Horror</option>
-                            <option value='THRILLER'>Thriller</option>
-                            <option value='WESTERN'>Western</option>
-                        </select>
-                        </div>
-                        
-                        <button className='search-button' onClick={() => search()}>Search</button>
+                <div className="search-element-container">
+                    <input type="text" name="search" id="search" placeholder='' onChange={handleMovieNameChange} />
                 </div>
+                <div className="search-element-container">
+                    <select className="actor-select" onChange={handleGenreSelectChange}>
+                        <option value="">Select a genre</option>
+                        <option value='SCIENCE_FICTION'>Science fiction</option>
+                        <option value='ACTION'>Action</option>
+                        <option value='COMEDY'>Comedy</option>
+                        <option value='DRAMA'>Drama</option>
+                        <option value='ROMANCE'>Romance</option>
+                        <option value='HORROR'>Horror</option>
+                        <option value='THRILLER'>Thriller</option>
+                        <option value='WESTERN'>Western</option>
+                    </select>
+                </div>
+                <div className="search-element-container">
+                    <button className='search-button' onClick={() => search()}>Search</button>
+                </div>
+
+
+
+
             </div>
 
             <div className="movies">
                 <div className="pagination">
-                    <GrPrevious className='pagination-button' onClick={handlePrevPage}/>
+                    <GrPrevious className='pagination-button' onClick={handlePrevPage} />
                 </div>
                 {movies && movies?.length !== 0 ? (movies && movies.map((movie, index) => (
-                    <MoviePaper movie={movie} key={movie.id}/>
+                    <MoviePaper movie={movie} key={movie.id} />
                 ))) : <Error message={"Sorry, no movies found"} />}
                 <div className="pagination">
-                    <GrNext className='pagination-button' onClick={handleNextPage}/>
+                    <GrNext className='pagination-button' onClick={handleNextPage} />
                 </div>
             </div>
         </div>

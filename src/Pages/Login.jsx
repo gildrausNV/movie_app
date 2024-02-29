@@ -55,7 +55,6 @@ const Login = ({ setToken, setId, setRole }) => {
   }
 
   return (
-    <div className="login">
       <div className="login-form">
         <div className="header">
           <h1>Login</h1>
@@ -94,7 +93,6 @@ const Login = ({ setToken, setId, setRole }) => {
           {error && <Error message={"Incorrect username or password, try again!"} />}
         </form>
       </div>
-    </div>
   );
 };
 
