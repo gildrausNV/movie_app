@@ -147,7 +147,7 @@ const MovieForm = () => {
                         
                     </div>
 
-                    <div className="button-container">
+                    <div className="button-container-movie-form">
                         <button type='button' onClick={() => handleSubmit()}>Save changes</button>
                     </div>
                 </div>

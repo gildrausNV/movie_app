@@ -30,6 +30,12 @@ const Login = ({ setToken, setId, setRole }) => {
     // const userData = await postData("http://localhost:8080/auth/login", loginData);
   };
 
+  const handleGuestLogin = async () => {
+    setRole('GUEST');
+    localStorage.setItem("role", 'GUEST');
+    navigate('/movies');
+  }
+
   useEffect(() => {
     if (response != null) {
       const { token, id, role } = response;
@@ -85,6 +91,11 @@ const Login = ({ setToken, setId, setRole }) => {
           <div className="button-container">
             <button type="submit" disabled={loading}>
               Login
+            </button>
+          </div>
+          <div className="button-container">
+            <button type='button' disabled={loading} onClick={handleGuestLogin}>
+              Visit as guest
             </button>
           </div>
           <div className="register-link">

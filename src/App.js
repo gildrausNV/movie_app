@@ -46,18 +46,20 @@ function App() {
         <Router>
           <div className="page">
             <div className="icons-container">
-              {token && <>
+              
+              {role && <>
                 <Link to={"/movies"}>
                   <MdLocalMovies className="menu-icon" />
                 </Link>
-                {role === "USER" ? <Link to={"/user"}>
-                  <FaUser className="menu-icon" />
-                </Link>: <Link to={"/addMovie"}>
-                  <MdAddToPhotos  className="menu-icon" />
-                </Link>}
                 <Link to={"/actors"}>
                   <MdRecentActors className="menu-icon" />
                 </Link>
+                {role === "USER" && <Link to={"/user"}>
+                  <FaUser className="menu-icon" />
+                </Link>}
+                {role === "ADMIN" && <Link to={"/addMovie"}>
+                  <MdAddToPhotos  className="menu-icon" />
+                </Link>}
                 {role === "ADMIN" && <Link to={"/newActor"}>
                   <GrUserNew className="menu-icon" />
                 </Link>}
