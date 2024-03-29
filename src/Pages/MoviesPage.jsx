@@ -7,6 +7,7 @@ import Error from '../Components/Error';
 import useFetchPaginationData from '../customHooks/useFetchPaginationData';
 import { GrPrevious, GrNext } from "react-icons/gr";
 import MoviePaper from '../Components/MoviePaper';
+import Filter from '../Components/Filter';
 
 const MemoizedMoviePaper = memo(MoviePaper);
 
@@ -63,32 +64,7 @@ const MoviesPage = () => {
 
     return (
         <div className="movies-page">
-            <div className="search-container">
-                <div className="search-element-container">
-                    <input type="text" name="search" id="search" placeholder='' onChange={handleMovieNameChange} />
-                </div>
-                <div className="search-element-container">
-                    <select className="actor-select" onChange={handleGenreSelectChange}>
-                        <option value="">Select a genre</option>
-                        <option value='SCIENCE_FICTION'>Science fiction</option>
-                        <option value='ACTION'>Action</option>
-                        <option value='COMEDY'>Comedy</option>
-                        <option value='DRAMA'>Drama</option>
-                        <option value='ROMANCE'>Romance</option>
-                        <option value='HORROR'>Horror</option>
-                        <option value='THRILLER'>Thriller</option>
-                        <option value='WESTERN'>Western</option>
-                    </select>
-                </div>
-                <div className="search-element-container">
-                    <button className='search-button' onClick={() => search()}>Search</button>
-                </div>
-
-
-
-
-            </div>
-
+            <Filter handleMovieNameChange={handleMovieNameChange} handleGenreSelectChange={handleGenreSelectChange} search={search}/>
             <div className="movies">
                 <div className="pagination">
                     <GrPrevious className='pagination-button' onClick={handlePrevPage} />

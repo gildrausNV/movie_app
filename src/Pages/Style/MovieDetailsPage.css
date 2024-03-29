@@ -1,20 +1,24 @@
 .movie-details-page {
-    width: 70%;
+    width: 75%;
     margin-left: 5%;
+    height: 70%;
 }
 
 .movie-details-container {
     display: flex;
-    /* align-items: center; */
+    align-items: center;
     justify-content: center;
+    
+}
+
+.movie-details-image{
+    margin: 10px;
 }
 
 .movie-details-image img {
     max-width: 100%;
     /* max-width: 400px;
     height: 584px; */
-    margin-right: 20px;
-
 }
 
 .movie-details-content {
