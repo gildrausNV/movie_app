@@ -1,6 +1,5 @@
 import React, { memo, useEffect, useMemo, useState } from 'react';
 import './Style/MovieDetailsPage.css';
-import Actor from '../Components/Actor';
 import { Button, Input, Rating } from '@mui/material';
 import { GrLike } from "react-icons/gr";
 import { GrDislike } from "react-icons/gr";
@@ -18,8 +17,7 @@ import Error from '../Components/Error';
 import { CiEdit } from "react-icons/ci";
 import ReviewModal from '../Components/ReviewModal';
 import useFetchPaginationData from '../customHooks/useFetchPaginationData';
-
-const MemoizedActor = memo(Actor);
+import MovieRoles from '../Components/MovieRoles';
 
 const MovieDetailsPage = () => {
     const navigate = useNavigate();
@@ -83,9 +81,7 @@ const MovieDetailsPage = () => {
                         <p><strong>Genre:</strong> {movie?.genre}</p>
                         <p><strong>Release Date:</strong> {movie.releaseDate}</p>
                         <p><strong>Description:</strong> {movie.description}</p>
-                        <div className="actors">
-                            {movie?.roles?.map((role, index) => <MemoizedActor role={role} key={index} />)}
-                        </div>
+                        <MovieRoles roles={movie?.roles}/>
                         <div className="comment-container">
                             <button className='comment-button' onClick={handleToggleReviewModal}>Show reviews</button>
                             <div className="like-button">

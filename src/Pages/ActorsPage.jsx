@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import useFetchPaginationData from '../customHooks/useFetchPaginationData';
 import './Style/ActorsPage.css';
 import { GrPrevious, GrNext } from "react-icons/gr";
@@ -6,6 +6,9 @@ import Loading from '../Components/Loading';
 import Error from '../Components/Error';
 import { FaUser } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import Actors from '../Components/Actors';
+
+const MemoizedActors = memo(Actors);
 
 const ActorsPage = () => {
     const navigate = useNavigate();
@@ -43,15 +46,7 @@ const ActorsPage = () => {
                 <GrPrevious className='pagination-button' onClick={handlePrevPage} />
             </div>
             <div className="actors-page">
-
-                {actors && actors.map((actor) => (
-                    <div className="actor-actor-page" onClick={() => navigate('/actorDetails/' + actor.id)} key={actor.id}>
-                        {actor.image ? <img src={actor.image} alt="" className='actor-card' /> : <FaUser className='actor-card'/>}
-                        <div className="info">
-                            {actor.firstName} {actor.lastName}
-                        </div>
-                    </div>
-                ))}
+                <MemoizedActors actors={actors}/>
             </div>
             <div className="pagination">
                 <GrNext className='pagination-button' onClick={handleNextPage} />

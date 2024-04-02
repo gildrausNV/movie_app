@@ -10,7 +10,6 @@ import Error from '../Components/Error';
 const MemoizedMovie = memo(Movie);
 
 const UserPage = () => {
-    // const { user } = useAuth();
     const { data, error, loading, refetchData } = useFetchData("https://movieappbackend-production-422b.up.railway.app/users/watchlist");
 
     if (loading) {
