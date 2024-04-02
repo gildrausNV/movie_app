@@ -8,7 +8,7 @@ const Filter = ({ handleMovieNameChange, handleGenreSelectChange, search }) => {
         <div className="filter-container">
             <div className="filter">
                 <Grid container spacing={2} alignItems="center" justifyContent="center">
-                    <Grid item xs={12} sm={6} md={3}>
+                    <Grid item xs={12} sm={6} md={4}> {/* Adjust grid size to better accommodate both components */}
                         <FormControl fullWidth>
                             <InputLabel id="genre-select-label" style={{ color: 'white' }}>Select a genre</InputLabel>
                             <Select
@@ -16,7 +16,7 @@ const Filter = ({ handleMovieNameChange, handleGenreSelectChange, search }) => {
                                 id="genre-select"
                                 onChange={handleGenreSelectChange}
                                 inputProps={{ style: { color: 'white' } }}
-                                style={{ minWidth: 150, borderColor: 'white' }} // Add borderColor style
+                                style={{ minWidth: 150, borderColor: 'white' }}
                             >
                                 <MenuItem value="">Select a genre</MenuItem>
                                 <MenuItem value='SCIENCE_FICTION'>Science fiction</MenuItem>
@@ -30,7 +30,7 @@ const Filter = ({ handleMovieNameChange, handleGenreSelectChange, search }) => {
                             </Select>
                         </FormControl>
                     </Grid>
-                    <Grid item xs={12} sm={6} md={3}>
+                    <Grid item xs={12} sm={6} md={4}>
                         <TextField
                             fullWidth
                             id="search"
@@ -40,7 +40,7 @@ const Filter = ({ handleMovieNameChange, handleGenreSelectChange, search }) => {
                             onChange={handleMovieNameChange}
                             InputLabelProps={{ style: { color: 'white' } }}
                             InputProps={{
-                                style: { color: 'white', borderColor: 'white' }, // Add borderColor style
+                                style: { color: 'white', borderColor: 'white' },
                                 endAdornment: (
                                     <InputAdornment position="end">
                                         <Button onClick={search} variant="contained" startIcon={<CiSearch />} style={{ backgroundColor: 'transparent' }} />

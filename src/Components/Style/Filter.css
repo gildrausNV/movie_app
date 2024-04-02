@@ -1,17 +1,12 @@
 .filter-container{
     width: 100%;
+    min-width: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .filter{
+    margin: 20px;
     width: 90%;
-}
-
-.genre-filter{
-    width: 33%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
