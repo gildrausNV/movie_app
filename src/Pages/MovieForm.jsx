@@ -24,10 +24,10 @@ const MovieForm = () => {
 
     const handleSubmit = async () => {
         const updatedMovie = {
-                ...movie,
-                roles: roles,
-                genre: genre
-            };
+            ...movie,
+            roles: roles,
+            genre: genre
+        };
 
         if (movieId) {
             await updateData('https://movieappbackend-production-422b.up.railway.app/movies/' + movieId, updatedMovie);
@@ -77,10 +77,10 @@ const MovieForm = () => {
 
 
     const handleAddRole = async () => {
-        if(roles && roles.length > 0){
+        if (roles && roles.length > 0) {
             setRoles(prevRoles => [...prevRoles, role]);
         }
-        else{
+        else {
             setRoles([role]);
         }
     };
@@ -94,7 +94,65 @@ const MovieForm = () => {
     }
 
     return (
-        <div className="edit-movie-page">
+        <div className="form-container">
+            <div className="form">
+                <div className="input-movie-container">
+                    <div className="input-container">
+                        <label htmlFor="">Title:</label>
+                        <input type="text" name='title' value={movie?.title} onChange={handleChange} />
+                    </div>
+                    <div className="input-container">
+                        <label htmlFor="">Date:</label>
+                        <input type="text" name='releaseDate' value={movie?.releaseDate} onChange={handleChange} />
+                    </div>
+                    <div className="input-container">
+                        <label htmlFor="">Description:</label>
+                        <textarea type="text" name='description' value={movie?.description} onChange={handleChange} id='description' />
+                    </div>
+                    <div className="input-container">
+                        <label htmlFor="">Genre:</label>
+                        <select className="actor-select" onChange={handleGenreSelectChange}>
+                            <option value="">Select genre</option>
+                            <option value='SCIENCE_FICTION'>Science fiction</option>
+                            <option value='ACTION'>Action</option>
+                            <option value='COMEDY'>Comedy</option>
+                            <option value='DRAMA'>Drama</option>
+                            <option value='ROMANCE'>Romance</option>
+                            <option value='HORROR'>Horror</option>
+                            <option value='THRILLER'>Thriller</option>
+                            <option value='WESTERN'>Western</option>
+                        </select>
+                    </div>
+                    <div className="input-container">
+                        <label htmlFor="">Poster:</label>
+                        <input type="text" name='image' value={movie?.image} onChange={handleChange} />
+                    </div>
+
+                    <div className="input-container">
+                        <select className="actor-select" onChange={handleActorSelectChange}>
+                            <option value="">Select an actor</option>
+                            {actors && actors?.map((actor, index) => (
+                                <option key={index} value={actor.id}>
+                                    {actor.firstName} {actor.lastName}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="input-container">
+                        <label htmlFor="">Role:</label>
+                        <input type="text" name="role" id="roleName" onChange={handleRoleInputChange} value={role?.role} />
+                        <button className="add-button" onClick={handleAddRole} type='button'>Add role</button>
+                    </div>
+                    <div className="input-container">
+                        <MemoizedRoles roles={roles}/> 
+                    </div>
+                    <div className="input-container">
+                        <button type='button' onClick={() => handleSubmit()}>Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        /* <div className="edit-movie-page">
             <form className="form-container" onSubmit={handleSubmit}>
                 <div className="image-container">
                     {movie?.image !== "" && <img src={movie?.image} alt={movie?.title} className='poster' />}
@@ -152,8 +210,8 @@ const MovieForm = () => {
                     </div>
                 </div>
             </form>
-            <MemoizedRoles roles={roles}/>
-        </div>
+            <MemoizedRoles roles={roles}/> 
+         </div>*/
     );
 }
 

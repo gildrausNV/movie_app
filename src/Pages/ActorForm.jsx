@@ -45,8 +45,8 @@ const ActorForm = () => {
 
 
     return (
-        <div className="edit-actor-page">
-            <form className="form-container" onSubmit={handleSubmit}>
+        <div className="form-container">
+            <form className="form" onSubmit={handleSubmit}>
                 <div className="input-actor-container">
                     <div className="input-container">
                         <label htmlFor="">First name:</label>
@@ -69,17 +69,11 @@ const ActorForm = () => {
                         <input type="text" name='nationality' value={actorData?.nationality} onChange={handleChange} />
                     </div>
                     <div className="input-container">
-                        <div className="input-container-image">
-                            <div className="image-container">
-                                {actorData?.image !== "" && <img src={actorData?.image} alt={actorData?.title} className='actor-image' />}
-                            </div>
                             <div className="input-container">
                                 <label htmlFor="">Image:</label>
                                 <input type="text" name='image' value={actorData?.image} onChange={handleChange} />
                             </div>
-                        </div>
                     </div>
-
                     <div className="button-container">
                         <button type='button' onClick={() => handleSubmit()}>Save changes</button>
                     </div>

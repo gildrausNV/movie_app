@@ -20,7 +20,7 @@ const RoleActorCard = ({ role }) => {
                 <img src={actor?.image} alt="" className="actor-card" />
             </div>
             <div className="actor-card-info">
-                <h3>{actor?.firstName} {actor?.lastName} as {role.role}</h3>
+                <h4>{actor?.firstName} {actor?.lastName} as {role.role}</h4>
             </div>
         </div>
     );

@@ -1,43 +1,29 @@
 .form-container{
-    background: rgba(0, 0, 0, 0.5); 
     width: 100%;
-    max-width: 800px;
-    height: 80%;
-    border-radius: 10px;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
 }
 
-.image-container{
+.form{
+    background: rgba(0, 0, 0, 0.5);
+    width: 50%;
+    height: 70%;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 80%;
 }
-
-.poster{
-    max-width: 80%;
-}
-
-/* .blank{
-    width: 404px;
-    background-color: white;
-} */
 
 .input-movie-container{
-    width: 100%;
-    /* width: 600px;
-    height: 600px;
-    margin: 20px;
-    margin-top: 30px; */
+    width: 80%;
+    height: 80%;
 }
 
-label{
+.input-container{
     display: flex;
     align-items: center;
-    color: white;
+    justify-content: center;
 }
 
 textarea{
@@ -53,61 +39,8 @@ textarea{
     height: 70px;
 }
 
-.button-container-movie-form{
-    margin: 20px;
-    margin-top: 20px;
-}
-
-.edit-movie-page{
-    align-items: center;
-    justify-content: center;
-    display: flex;
-}
-
-.button-container button{
-    margin: 14px;
-}
-
-
-
-.edit-movie-page input, textarea{
-    margin-left: 10px;
-}
-
-.role{
-    margin: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    padding: 2px;
-}
-
-.role:hover{
-    background-color: #9a0000;
-    transition: 0.5s;
-    cursor: pointer;
-}
-
-.add-button{
-    height: 40px;
-    margin-left: 10px;
-}
-
-.actor-select{
-    /* width: 100%; */
-    margin-left: 40px;
-    margin-bottom: 20px;
-    height: 40px;
-}
-
-.input-box-modal{
-    display: flex;
-}
-
-.edit-movie-page{
-    display: flex;
+#description{
     width: 100%;
-    align-items: center;
-    justify-content: center;
+    height: 60px;
+    border-radius: 5px;
 }
