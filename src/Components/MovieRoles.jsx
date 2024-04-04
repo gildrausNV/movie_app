@@ -8,7 +8,7 @@ const MovieRoles = ({ roles }) => {
     return (
         <>
             <div className="actors">
-                {roles.map((role, index) => <MemoizedActor role={role} key={index} />)}
+                {roles?.map((role, index) => <MemoizedActor role={role} key={index} />)}
             </div>
         </>
     );

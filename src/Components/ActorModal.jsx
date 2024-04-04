@@ -21,7 +21,7 @@ const ActorModal = ({ open, onClose, actor }) => {
                 <div className="actor-info-modal">
                     <p>{actor?.firstName} {actor?.lastName}</p>
                 </div>
-                <button onClick={() => navigate('/actorDetails/' + actor.id)}>Visit page</button>
+                <button onClick={() => navigate('/actorDetails/' + actor?.id)}>Visit page</button>
             </Box>
 
         </Modal>

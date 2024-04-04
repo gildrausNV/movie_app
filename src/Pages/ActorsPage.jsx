@@ -13,7 +13,7 @@ const MemoizedActors = memo(Actors);
 const ActorsPage = () => {
     const navigate = useNavigate();
     const [page, setPage] = useState(0);
-    const pageSize = 6;
+    const pageSize = 5;
     const { data: actors, totalPages, loading, error, updateParams } = useFetchPaginationData("https://movieappbackend-production-422b.up.railway.app/actors", { size: pageSize, page: page });
 
     const handleNextPage = () => {

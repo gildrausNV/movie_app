@@ -35,7 +35,7 @@ const Actor = ({ role }) => {
                 
             </div>
             <div className="actor-info">
-                <h4>{role.role}</h4>
+                <h4>{role?.role}</h4>
             </div>
             <ActorModal open={showActorModal} onClose={handleToggleActorModal} actor={actor}/>
         </div>
