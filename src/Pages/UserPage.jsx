@@ -17,7 +17,7 @@ const UserPage = () => {
     }
 
     if (error) {
-        return <Error message={error.message}/>;
+        return <Error message={error.response.data.body.detail}/>;
     }
 
     return (

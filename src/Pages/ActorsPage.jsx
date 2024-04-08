@@ -32,8 +32,8 @@ const ActorsPage = () => {
         updateParams({ size: pageSize, page });
     }, [page])
 
-    if(error){
-        return <Error message={error.message}/>
+    if (error) {
+        return <Error message={error.response.data.body.detail}/>;
     }
 
     if(loading){

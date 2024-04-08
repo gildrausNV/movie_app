@@ -59,7 +59,7 @@ const MovieDetailsPage = () => {
     }
 
     if (error) {
-        return <Error message={error.message} />;
+        return <Error message={error.response.data.body.detail}/>;
     }
 
     return (
@@ -81,7 +81,7 @@ const MovieDetailsPage = () => {
                         <p><strong>Genre:</strong> {movie?.genre}</p>
                         <p><strong>Release Date:</strong> {movie.releaseDate}</p>
                         <p><strong>Description:</strong> {movie.description}</p>
-                        <MovieRoles roles={movie?.roles}/>
+                        <MovieRoles roles={movie?.roles} />
                         <div className="comment-container">
                             <button className='comment-button' onClick={handleToggleReviewModal}>Show reviews</button>
                             <div className="like-button">

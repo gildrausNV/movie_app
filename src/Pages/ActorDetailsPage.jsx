@@ -24,7 +24,7 @@ const ActorDetailsPage = () => {
     }
 
     if (error || errorMovies) {
-        return <Error message={error ? error.message : errorMovies.message} />;
+        return <Error message={error.response.data.body.detail}/>;
     }
 
     return (

@@ -31,10 +31,10 @@ const MovieForm = () => {
 
         if (movieId) {
             await updateData('https://movieappbackend-production-422b.up.railway.app/movies/' + movieId, updatedMovie);
+            navigate('/movieDetails/' + movieId);
         } else {
             await postData('https://movieappbackend-production-422b.up.railway.app/movies', updatedMovie);
         }
-        navigate('/movieDetails/' + movieId);
     };
 
     useEffect(() => {
@@ -89,8 +89,8 @@ const MovieForm = () => {
         return <Loading />
     }
 
-    if (error && movieId) {
-        return <Error message={error.message} />
+    if (errorActors) {
+        return <Error message={errorActors.response.data.body.detail}/>;
     }
 
     return (
@@ -149,69 +149,13 @@ const MovieForm = () => {
                     <div className="input-container">
                         <button type='button' onClick={() => handleSubmit()}>Save changes</button>
                     </div>
+                    <div className="button-container">
+                        {errorPost && <Error message={errorPost.response.data.body.detail} />}
+                        {errorPut && <Error message={errorPut.response.data.body.detail} />}
+                    </div>
                 </div>
             </div>
         </div>
-        /* <div className="edit-movie-page">
-            <form className="form-container" onSubmit={handleSubmit}>
-                <div className="image-container">
-                    {movie?.image !== "" && <img src={movie?.image} alt={movie?.title} className='poster' />}
-                </div>
-                <div className="input-movie-container">
-                    <div className="input-container">
-                        <label htmlFor="">Title:</label>
-                        <input type="text" name='title' value={movie?.title} onChange={handleChange} />
-                    </div>
-                    <div className="input-container">
-                        <label htmlFor="">Date:</label>
-                        <input type="text" name='releaseDate' value={movie?.releaseDate} onChange={handleChange} />
-                    </div>
-                    <div className="input-container">
-                        <label htmlFor="">Description:</label>
-                        <textarea type="text" name='description' value={movie?.description} onChange={handleChange} />
-                    </div>
-                    <div className="input-container">
-                        <label htmlFor="">Genre:</label>
-                        <select className="actor-select" onChange={handleGenreSelectChange}>
-                            <option value="">Select an actor</option>
-                            <option value='SCIENCE_FICTION'>Science fiction</option>
-                            <option value='ACTION'>Action</option>
-                            <option value='COMEDY'>Comedy</option>
-                            <option value='DRAMA'>Drama</option>
-                            <option value='ROMANCE'>Romance</option>
-                            <option value='HORROR'>Horror</option>
-                            <option value='THRILLER'>Thriller</option>
-                            <option value='WESTERN'>Western</option>
-                        </select>
-                    </div>
-                    <div className="input-container">
-                        <label htmlFor="">Poster:</label>
-                        <input type="text" name='image' value={movie?.image} onChange={handleChange} />
-                    </div>
-                    <div className="input-container">
-                        <select className="actor-select" onChange={handleActorSelectChange}>
-                            <option value="">Select an actor</option>
-                            {actors && actors?.map((actor, index) => (
-                                <option key={index} value={actor.id}>
-                                    {actor.firstName} {actor.lastName}
-                                </option>
-                            ))}
-                        </select>
-                        <div className="input-box-modal">
-                            <label htmlFor="">Role:</label>
-                            <input type="text" name="role" id="roleName" onChange={handleRoleInputChange} value={role?.role} />
-                            <button className="add-button" onClick={handleAddRole} type='button'>Add role</button>
-                        </div>
-                        
-                    </div>
-
-                    <div className="button-container-movie-form">
-                        <button type='button' onClick={() => handleSubmit()}>Save changes</button>
-                    </div>
-                </div>
-            </form>
-            <MemoizedRoles roles={roles}/> 
-         </div>*/
     );
 }
 

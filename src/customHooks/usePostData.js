@@ -14,6 +14,7 @@ const usePostData = () => {
       const response = await axios.post(url, postData, { headers });
       setResponse(response.data);
     } catch (error) {
+      console.log(error);
       setError(error);
     }
     setLoading(false);

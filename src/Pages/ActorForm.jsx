@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import './Style/ActorForm.css';
 import usePostData from "../customHooks/usePostData";
 import usePutData from "../customHooks/usePutData";
+import Error from "../Components/Error";
 
 const ActorForm = () => {
     const { actorId } = useParams();
@@ -16,8 +17,8 @@ const ActorForm = () => {
     });
 
     const { data: actor, loading, error } = useFetchData("https://movieappbackend-production-422b.up.railway.app/actors/" + actorId);
-    const { postData } = usePostData();
-    const { updateData } = usePutData(); 
+    const { postData, error: errorPost } = usePostData();
+    const { updateData, error: errorPut } = usePutData();
 
     useEffect(() => {
         if (actor) {
@@ -27,10 +28,10 @@ const ActorForm = () => {
 
     const handleSubmit = () => {
         console.log(actorData);
-        if(actorId){
+        if (actorId) {
             updateData("https://movieappbackend-production-422b.up.railway.app/actors/" + actorId, actorData);
         }
-        else{
+        else {
             postData("https://movieappbackend-production-422b.up.railway.app/actors", actorData);
         }
     }
@@ -69,13 +70,17 @@ const ActorForm = () => {
                         <input type="text" name='nationality' value={actorData?.nationality} onChange={handleChange} />
                     </div>
                     <div className="input-container">
-                            <div className="input-container">
-                                <label htmlFor="">Image:</label>
-                                <input type="text" name='image' value={actorData?.image} onChange={handleChange} />
-                            </div>
+                        <div className="input-container">
+                            <label htmlFor="">Image:</label>
+                            <input type="text" name='image' value={actorData?.image} onChange={handleChange} />
+                        </div>
                     </div>
                     <div className="button-container">
                         <button type='button' onClick={() => handleSubmit()}>Save changes</button>
+                    </div>
+                    <div className="button-container">
+                        {errorPost && <Error message={errorPost.response.data.body.detail} />}
+                        {errorPut && <Error message={errorPut.response.data.body.detail} />}
                     </div>
                 </div>
             </form>

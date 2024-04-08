@@ -10,8 +10,8 @@ const RoleActorCard = ({ role }) => {
         return <Loading />
     }
 
-    if(error){
-        return <Error message={error.message}/>
+    if (error) {
+        return <Error message={error.response.data.body.detail}/>;
     }
     
     return (

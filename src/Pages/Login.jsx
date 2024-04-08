@@ -101,7 +101,7 @@ const Login = ({ setToken, setId, setRole }) => {
           <div className="register-link">
             <Link to={'/register'}>Create an account!</Link>
           </div>
-          {error && <Error message={"Incorrect username or password, try again!"} />}
+          {error && <Error message={error.response.data.body.detail} />}
         </form>
       </div>
   );
