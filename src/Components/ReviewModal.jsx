@@ -17,6 +17,7 @@ const ReviewModal = ({ open, onClose, movieId }) => {
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState("");
     const inputRef = useRef(null);
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
         setRating(averateRating);
@@ -42,10 +43,6 @@ const ReviewModal = ({ open, onClose, movieId }) => {
 
     if (loading) {
         return <Loading />
-    }
-
-    if (error) {
-        return <Error message={error.response.data.body.detail} />;
     }
 
     return (
@@ -82,7 +79,7 @@ const ReviewModal = ({ open, onClose, movieId }) => {
                             }}
                         />
                     </div>
-                    <div className="input-comment-container">
+                    {token && <div className="input-comment-container">
                         <div
                             className="input"
                             contentEditable
@@ -95,8 +92,8 @@ const ReviewModal = ({ open, onClose, movieId }) => {
                                 onClick={handleSubmit}
                             />
                         </div>
-                    </div>
-                    {errorPost && <Error message={errorPost.response.data.body.detail} />}
+                    </div>}
+                    {errorPost && <Error message={errorPost.response.data.body?.detail} />}
                 </div>
             </div>
         </Modal>
