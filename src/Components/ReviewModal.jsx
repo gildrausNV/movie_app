@@ -12,8 +12,8 @@ import { TiDelete } from 'react-icons/ti';
 const ReviewModal = ({ open, onClose, movieId }) => {
     const { data: reviews, loading, error, refetchData } = useFetchData("https://movieappbackend-production-422b.up.railway.app/reviews/" + movieId);
     const { data: averateRating } = useFetchData("https://movieappbackend-production-422b.up.railway.app/reviews/rating/" + movieId);
-    const { postData } = usePostData();
-    const { deleteData } = useDeleteData();
+    const { postData, error: errorPost } = usePostData();
+    const { deleteData, error: errorDelete } = useDeleteData();
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState("");
     const inputRef = useRef(null);
@@ -27,14 +27,12 @@ const ReviewModal = ({ open, onClose, movieId }) => {
     };
 
     const handleSubmit = async () => {
-        if (comment.trim() !== "") {
-            await postData("https://movieappbackend-production-422b.up.railway.app/reviews/" + movieId, {
-                content: comment,
-                rating: rating
-            });
-            setComment("");
-            refetchData();
-        }
+        await postData("https://movieappbackend-production-422b.up.railway.app/reviews/" + movieId, {
+            content: comment,
+            rating: rating
+        });
+        setComment("");
+        refetchData();
     };
 
     const handleDelete = async (reviewId) => {
@@ -47,7 +45,7 @@ const ReviewModal = ({ open, onClose, movieId }) => {
     }
 
     if (error) {
-        return <Error message={error.response.data.body.detail}/>;
+        return <Error message={error.response.data.body.detail} />;
     }
 
     return (
@@ -64,12 +62,12 @@ const ReviewModal = ({ open, onClose, movieId }) => {
                             </p>
                             <div className="delete-icon-container">
                                 <Rating
-                                name="simple-controlled"
-                                value={review.rating}
-                                readOnly
-                                className='review-rating'
-                            />
-                                { (localStorage.getItem('role') === 'ADMIN' || review.user.id === localStorage.getItem("id")) && <TiDelete className="delete-icon" onClick={() => handleDelete(review.id)} />}
+                                    name="simple-controlled"
+                                    value={review.rating}
+                                    readOnly
+                                    className='review-rating'
+                                />
+                                {(localStorage.getItem('role') === 'ADMIN' || review.user.id === localStorage.getItem("id")) && <TiDelete className="delete-icon" onClick={() => handleDelete(review.id)} />}
                             </div>
                         </div>
                     ))}
@@ -98,6 +96,7 @@ const ReviewModal = ({ open, onClose, movieId }) => {
                             />
                         </div>
                     </div>
+                    {errorPost && <Error message={errorPost.response.data.body.detail} />}
                 </div>
             </div>
         </Modal>
