@@ -103,7 +103,7 @@ const MovieForm = () => {
                     </div>
                     <div className="input-container">
                         <label htmlFor="">Date:</label>
-                        <input type="text" name='releaseDate' value={movie?.releaseDate} onChange={handleChange} />
+                        <input type="date" name='releaseDate' value={movie?.releaseDate} onChange={handleChange} />
                     </div>
                     <div className="input-container">
                         <label htmlFor="">Description:</label>

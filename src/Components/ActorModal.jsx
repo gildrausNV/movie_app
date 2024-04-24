@@ -1,11 +1,9 @@
 import { Box, Modal } from '@mui/material';
 import './Style/ActorModal.css';
 import { FaUser } from 'react-icons/fa';
-import { useAuth } from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const ActorModal = ({ open, onClose, actor }) => {
-    const { user } = useAuth();
     const navigate = useNavigate();
 
     return (
@@ -21,7 +19,7 @@ const ActorModal = ({ open, onClose, actor }) => {
                 <div className="actor-info-modal">
                     <p>{actor?.firstName} {actor?.lastName}</p>
                 </div>
-                <button onClick={() => navigate('/actorDetails/' + actor?.id)}>Visit page</button>
+                <button name='Visit page' onClick={() => navigate('/actorDetails/' + actor?.id)}>Visit page</button>
             </Box>
 
         </Modal>
